@@ -11,7 +11,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1">
           <About></About>
         </div>
-        <div className="mt-10 grid grid-cols-1">
+        {/* <div className="mt-10 grid grid-cols-1">
           <Companies></Companies>
         </div>
         <div className="border-1 mt-10 grid grid-cols-1">
@@ -19,7 +19,7 @@ export default function HomePage() {
         </div>
         <div className="border-1 mt-10 grid grid-cols-1">
           <Contact></Contact>
-        </div>
+        </div> */}
       </div>
     </div>
   );
