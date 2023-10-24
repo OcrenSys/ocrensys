@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import {
-  Navbar,
+  Navbar as Nav,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faEnvelope, faHouse } from "@fortawesome/free-solid-svg-icons";
 import LOGO from "../../public/logotipo/ltw.png";
 
-export default function NavbarComponent() {
+export default function Navbar() {
   interface IMenu {
     title: string;
     url: string;
@@ -36,7 +36,7 @@ export default function NavbarComponent() {
   ];
 
   return (
-    <Navbar
+    <Nav
       shouldHideOnScroll
       className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% | border-b border-slate-900/10 lg:px-8 dark:border-slate-300/10"
     >
@@ -51,6 +51,6 @@ export default function NavbarComponent() {
           </NavbarItem>
         ))}
       </NavbarContent>
-    </Navbar>
+    </Nav>
   );
 }
