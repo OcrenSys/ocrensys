@@ -40,7 +40,11 @@ const About = (props: TProps) => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
       <div className="mt-10 mb-10 md:mb-auto">
         <motion.div variants={container} initial="hidden" animate="show">
-          <motion.h1 custom={1} variants={item} className="text-5xl font-bold text-center md:text-left lg:text-left xl:text-left">
+          <motion.h1
+            custom={1}
+            variants={item}
+            className="text-5xl font-bold text-center md:text-left lg:text-left xl:text-left"
+          >
             {hi || ""}
           </motion.h1>
           <motion.h2
@@ -57,7 +61,11 @@ const About = (props: TProps) => {
               loop
             />
           </motion.h2>
-          <motion.p custom={3} variants={item} className="mt-6 text-lg text-center md:text-left lg:text-left xl:text-left">
+          <motion.p
+            custom={3}
+            variants={item}
+            className="mt-6 text-lg text-center md:text-left lg:text-left xl:text-left"
+          >
             {description}
           </motion.p>
 
@@ -124,15 +132,12 @@ const About = (props: TProps) => {
       </div>
       <div className="flex content-center align-middle justify-center md:justify-end">
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{
-            ease: "linear",
             duration: 0.5,
-          }}
-          animate={{
-            opacity: 1,
+            delay: 0.1,
+            ease: [0, 0.5, 0.2, 1.5],
           }}
         >
           <Image

@@ -1,21 +1,55 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import PICTURE from "../../public/images/img.jpg";
 import { Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { Project } from "@/core/types/project.type";
+import { motion } from "framer-motion";
 
-const Card = (props: any) => {
+type TProps = { project: Project; index: number };
+
+const Card = ({ project, index }: TProps) => {
+  const { title, description, image, url }: Project = project;
+
+  const container = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      },
+    },
+  };
+
+  const card = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 100 },
+  };
+
   return (
-    <div className="mb-8 relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
-      <div className="relative h-56 mx-4 -mt-12 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
-        <Image src={PICTURE} alt="img-blur-shadow" layout="fill" />
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: index * 0.5,
+        delay: 0.1,
+        ease: [0, 0.5, 0.2, 1.5],
+      }}
+      className="w-80 mb-4 relative flex flex-col text-gray-700 bg-white shadow-md rounded-xl bg-clip-border"
+    >
+      <div className="relative h-56  mx-4 -mt-12 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
+        <Image src={`${image}`} fill className="object-cover" alt="logo" />
       </div>
       <div className="px-6 py-2">
         <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-          UI/UX Review Check
+          {title}
         </h5>
       </div>
       <div className="px-6 pb-4 pt-0">
@@ -28,29 +62,9 @@ const Card = (props: any) => {
           >
             Read More <FontAwesomeIcon icon={faArrowRight} />
           </Button>
-
-          <Button
-            className="bg-[#000000] mr-4"
-            isIconOnly
-            radius="full"
-            variant="solid"
-            aria-label="github"
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </Button>
-
-          <Button
-            className="bg-[#0077B5] mr-4"
-            isIconOnly
-            radius="full"
-            variant="solid"
-            aria-label="linkedin"
-          >
-            <FontAwesomeIcon icon={faLinkedin} />
-          </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

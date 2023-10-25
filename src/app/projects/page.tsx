@@ -1,83 +1,36 @@
-"use client";
-import Card from "@/components/card";
 import React from "react";
-import { motion } from "framer-motion";
+import Card from "@/components/card";
+import { Project, TProject } from "@/core/types/project.type";
+import { promises as fs } from "fs";
+import path from "path";
+import PorjectDescription from "@/components/project-description";
 
-const Projects = () => {
-  const data: any[] = [
-    {
-      name: "Lorem Ipsum",
-      description:
-        "Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.",
-      src: "https://loremflickr.com/640/360",
-    },
+async function getData() {
+  const _directory = path.join(process.cwd(), "src/config/data");
+  const _path: string = `${_directory}/projects.json`;
+  const data = await fs.readFile(_path, "utf8");
 
-    {
-      name: "Lorem Ipsum",
-      description:
-        "Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.",
-      src: "https://loremflickr.com/640/360",
-    },
-    {
-      name: "Lorem Ipsum",
-      description:
-        "Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.",
-      src: "https://loremflickr.com/640/360",
-    },
-    {
-      name: "Lorem Ipsum",
-      description:
-        "Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.",
-      src: "https://loremflickr.com/640/360",
-    },
-    {
-      name: "Lorem Ipsum",
-      description:
-        "Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.",
-      src: "https://loremflickr.com/640/360",
-    },
-    {
-      name: "Lorem Ipsum",
-      description:
-        "Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.",
-      src: "https://loremflickr.com/640/360",
-    },
-  ];
+  return { data };
+}
 
-  const container = {
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      transition: {
-        when: "afterChildren",
-      },
-    },
-  };
-
-  const card = {
-    visible: { opacity: 1, y: 0 },
-    hidden: { opacity: 0, y: 100 },
-  };
+const Projects = async () => {
+  const result: { data: string } = await getData();
+  const { title, qualities, description, projects }: TProject = JSON.parse(
+    result.data
+  );
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={container}
-      className="pt-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-16"
-    >
-      {data.map((p, i) => (
-        <motion.div variants={card} key={i}>
-          <Card data={data[i]}></Card>
-        </motion.div>
-      ))}
-    </motion.div>
+    <div className="grid grid-cols-1 gap-16">
+      <PorjectDescription
+        title={title || ""}
+        description={description || ""}
+      ></PorjectDescription>
+      <div className="pt-16 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-16">
+        {projects.map((project: Project, index: number) => (
+          <Card key={index} index={index} project={project}></Card>
+        ))}
+      </div>
+    </div>
   );
 };
 
