@@ -23,12 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={clsx(inter.className, "")}>
-        <Navbar></Navbar>
-        <Providers>
-          <main className="min-h-screen flex flex-col items-center justify-between p-4 md:px-24 lg:px-24 md:py-12 lg:py-12  | bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-            <Suspense fallback={<Loading />}>{children}</Suspense>
-          </main>
-        </Providers>
+        <div className="min-h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+          <Navbar></Navbar>
+          <Providers>
+            <main className="teal-dark h-screen flex self-center items-center md:items-start lg:items-start xl:items-start content-start md:content-center lg:content-center justify-between px-12 md:px-24 lg:px-36 xl:px-48 mt-24 md:mt-6 py-4 md:py-6 lg:py-6">
+              <Suspense fallback={<Loading />}>{children}</Suspense>
+            </main>
+          </Providers>
+        </div>
       </body>
     </html>
   );

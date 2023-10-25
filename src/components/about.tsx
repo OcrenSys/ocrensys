@@ -1,18 +1,24 @@
 "use client";
 import Typed from "react-typed";
 import Image from "next/image";
+import Link from "next/link";
+
+import { motion } from "framer-motion";
 import { Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { faMedium } from "@fortawesome/free-brands-svg-icons/faMedium";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import { NextPageContext } from "next";
-import { motion } from "framer-motion";
-import PICTURE from "../../../public/images/picture.png";
 
-const Home = () => {
+import { TAbout } from "@/core/types/about.type";
+
+type TProps = { data: unknown };
+
+const About = (props: TProps) => {
+  const { hi, roles, description, skills, getInTouch, image, social }: TAbout =
+    props.data as TAbout;
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -32,29 +38,27 @@ const Home = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-      <div className="mt-10">
+      <div className="mt-10 mb-10 md:mb-auto">
         <motion.div variants={container} initial="hidden" animate="show">
-          <motion.h1 custom={1} variants={item} className="text-5xl font-bold">
-            {"HI!, I'm Jairo"}
+          <motion.h1 custom={1} variants={item} className="text-5xl font-bold text-center md:text-left lg:text-left xl:text-left">
+            {hi || ""}
           </motion.h1>
           <motion.h2
             custom={2}
             variants={item}
-            className="text-2xl font-medium mt-2 text-primary-50"
+            className="text-2xl font-medium mt-2 text-primary-50 text-center md:text-left lg:text-left xl:text-left"
           >
-            {"Software developer using"}{" "}
+            {roles || ""}{" "}
             <Typed
-              strings={["Angular", "React", "NestJS"]}
+              strings={skills || []}
               typeSpeed={150}
               backSpeed={60}
               cursorChar="_"
               loop
             />
           </motion.h2>
-          <motion.p custom={3} variants={item} className="mt-6 text-lg">
-            {
-              "I'm a highly skilled software developer with over five years of experience, driven by a deep passion for achieving both personal and professional growth."
-            }
+          <motion.p custom={3} variants={item} className="mt-6 text-lg text-center md:text-left lg:text-left xl:text-left">
+            {description}
           </motion.p>
 
           <motion.div
@@ -69,7 +73,7 @@ const Home = () => {
             transition={{
               delay: 0.6,
             }}
-            className="mt-4 flex flex-wrap"
+            className="mt-4 flex justify-center md:justify-start lg:justify-start xl:justify-start"
           >
             <Link href={"/contact"}>
               <Button
@@ -78,7 +82,7 @@ const Home = () => {
                 color="primary"
                 variant="solid"
               >
-                Get In Touch
+                {getInTouch}
                 <FontAwesomeIcon icon={faArrowRight} />
               </Button>
             </Link>
@@ -89,7 +93,7 @@ const Home = () => {
               radius="full"
               variant="solid"
               aria-label="medium"
-              onClick={() => redirectTo("https://medium.com/@ocrensys")}
+              onClick={() => redirectTo(social.medium)}
             >
               <FontAwesomeIcon icon={faMedium} />
             </Button>
@@ -100,9 +104,7 @@ const Home = () => {
               radius="full"
               variant="solid"
               aria-label="github"
-              onClick={() =>
-                redirectTo("https://github.com/OcrenSys?tab=repositories")
-              }
+              onClick={() => redirectTo(social.github)}
             >
               <FontAwesomeIcon icon={faGithub} />
             </Button>
@@ -113,18 +115,14 @@ const Home = () => {
               radius="full"
               variant="solid"
               aria-label="linkedin"
-              onClick={() =>
-                redirectTo(
-                  "https://www.linkedin.com/in/jairo-martinez-a14b94240/"
-                )
-              }
+              onClick={() => redirectTo(social.likedIn)}
             >
               <FontAwesomeIcon icon={faLinkedin} />
             </Button>
           </motion.div>
         </motion.div>
       </div>
-      <div className="flex content-center  align-middle  justify-center">
+      <div className="flex content-center align-middle justify-center md:justify-end">
         <motion.div
           initial={{
             opacity: 0,
@@ -138,10 +136,10 @@ const Home = () => {
           }}
         >
           <Image
-            src={PICTURE}
-            priority={true}
-            height={400}
-            className="h-max object-contain w-auto"
+            src={`${image}`}
+            height={200}
+            width={400}
+            className="object-contain h-[400px]"
             alt="logo"
           />
         </motion.div>
@@ -149,11 +147,4 @@ const Home = () => {
     </div>
   );
 };
-
-Home.getInitialProps = async (ctx: NextPageContext) => {
-  // const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  // const json = await res.json()
-  // return { stars: json.stargazers_count }
-  return { data: {} };
-};
-export default Home;
+export default About;
