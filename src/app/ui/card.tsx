@@ -1,29 +1,29 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import { Button } from "@nextui-org/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { Project } from "@/core/types/project.type";
-import { motion } from "framer-motion";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import { Button } from '@nextui-org/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
+import { TProjectItem } from '../lib/definitions';
 
-type TProps = { project: Project; index: number };
+type TProps = { project: TProjectItem; index: number };
 
 const Card = ({ project, index }: TProps) => {
-  const { title, description, image, url }: Project = project;
+  const { title, description, image, url }: TProjectItem = project;
 
   const container = {
     visible: {
       opacity: 1,
       transition: {
-        when: "beforeChildren",
+        when: 'beforeChildren',
         staggerChildren: 0.1,
       },
     },
     hidden: {
       opacity: 0,
       transition: {
-        when: "afterChildren",
+        when: 'afterChildren',
       },
     },
   };
@@ -42,7 +42,7 @@ const Card = ({ project, index }: TProps) => {
         delay: 0.1,
         ease: [0, 0.5, 0.2, 1.5],
       }}
-      className="w-80 mb-4 relative flex flex-col text-gray-700 bg-white shadow-md rounded-xl bg-clip-border"
+      className="w-full mb-8 relative flex flex-col text-gray-700 bg-white shadow-md rounded-xl bg-clip-border"
     >
       <div className="relative h-56  mx-4 -mt-12 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
         <Image src={`${image}`} fill className="object-cover" alt="logo" />

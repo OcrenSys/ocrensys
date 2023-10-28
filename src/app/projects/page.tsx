@@ -1,32 +1,24 @@
-import React from "react";
-import Card from "@/components/card";
-import { Project, TProject } from "@/core/types/project.type";
-import { promises as fs } from "fs";
-import path from "path";
-import PorjectDescription from "@/components/project-description";
+import React from 'react';
+import Card from '@/app/ui/card';
+import PorjectDescription from '@/app/ui/project-description';
+import { TProjectItem, TProject } from '../lib/definitions';
+import { ProjectData as data } from '../lib/palceholder_data';
 
-async function getData() {
-  const _directory = path.join(process.cwd(), "src/config/data");
-  const _path: string = `${_directory}/projects.json`;
-  const data = await fs.readFile(_path, "utf8");
-
-  return { data };
+function getData(): TProject {
+  return data;
 }
 
-const Projects = async () => {
-  const result: { data: string } = await getData();
-  const { title, qualities, description, projects }: TProject = JSON.parse(
-    result.data
-  );
+const Projects = () => {
+  const { title, description, items } = getData();
 
   return (
-    <div className="grid grid-cols-1 gap-16">
+    <div className="grid grid-cols-1">
       <PorjectDescription
-        title={title || ""}
-        description={description || ""}
+        title={title || ''}
+        description={description || ''}
       ></PorjectDescription>
-      <div className="pt-16 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-16">
-        {projects.map((project: Project, index: number) => (
+      <div className="pt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+        {items.map((project: TProjectItem, index: number) => (
           <Card key={index} index={index} project={project}></Card>
         ))}
       </div>

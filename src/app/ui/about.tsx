@@ -1,23 +1,30 @@
-"use client";
-import Typed from "react-typed";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import Typed from 'react-typed';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { motion } from "framer-motion";
-import { Button } from "@nextui-org/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
-import { faMedium } from "@fortawesome/free-brands-svg-icons/faMedium";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-
-import { TAbout } from "@/core/types/about.type";
+import { motion } from 'framer-motion';
+import { Button } from '@nextui-org/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
+import { faMedium } from '@fortawesome/free-brands-svg-icons/faMedium';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { TInformation } from '../lib/definitions';
+import clsx from 'clsx';
 
 type TProps = { data: unknown };
 
 const About = (props: TProps) => {
-  const { hi, roles, description, skills, getInTouch, image, social }: TAbout =
-    props.data as TAbout;
+  const {
+    hi,
+    roles,
+    description,
+    skills,
+    getInTouch,
+    image,
+    social,
+  }: TInformation = props.data as TInformation;
 
   const container = {
     hidden: { opacity: 0 },
@@ -40,19 +47,39 @@ const About = (props: TProps) => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
       <div className="mt-10 mb-10 md:mb-auto">
         <motion.div variants={container} initial="hidden" animate="show">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1,
+              ease: [0, 0.5, 0.2, 1.5],
+            }}
+            className="flex justify-center mx-auto mb-16 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px]  md:hidden relative"
+          >
+            <Image
+              src={`${image}`}
+              fill
+              className="object-cover object-top  p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+              alt="logo"
+            />
+          </motion.div>
+
           <motion.h1
             custom={1}
             variants={item}
             className="text-5xl font-bold text-center md:text-left lg:text-left xl:text-left"
           >
-            {hi || ""}
+            {hi || ''}
           </motion.h1>
           <motion.h2
             custom={2}
             variants={item}
-            className="text-2xl font-medium mt-2 text-primary-50 text-center md:text-left lg:text-left xl:text-left"
+            className={
+              'text-2xl font-medium mt-2 text-primary-50 text-center md:text-left lg:text-left xl:text-left'
+            }
           >
-            {roles || ""}{" "}
+            {roles || ''}{' '}
             <Typed
               strings={skills || []}
               typeSpeed={150}
@@ -64,7 +91,9 @@ const About = (props: TProps) => {
           <motion.p
             custom={3}
             variants={item}
-            className="mt-6 text-lg text-center md:text-left lg:text-left xl:text-left"
+            className={clsx(
+              'mt-6 font-light text-lg text-center md:text-left lg:text-left xl:text-left',
+            )}
           >
             {description}
           </motion.p>
@@ -83,7 +112,7 @@ const About = (props: TProps) => {
             }}
             className="mt-4 flex justify-center md:justify-start lg:justify-start xl:justify-start"
           >
-            <Link href={"/contact"}>
+            <Link href={'/contact'}>
               <Button
                 className="w-auto mr-4"
                 radius="full"
@@ -130,7 +159,7 @@ const About = (props: TProps) => {
           </motion.div>
         </motion.div>
       </div>
-      <div className="flex content-center align-middle justify-center md:justify-end">
+      <div className="hidden content-center align-middle justify-center md:justify-end md:flex">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}

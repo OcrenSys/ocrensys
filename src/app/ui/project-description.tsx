@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import { motion } from "framer-motion";
+'use client';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const PorjectDescription = ({
   title,
@@ -23,7 +23,7 @@ const PorjectDescription = ({
         transition={{
           delay: 0.2,
         }}
-        className="text-primery text-center text-4xl"
+        className="text-primery text-center text-4xl mb-8"
       >
         {title}
       </motion.h1>
@@ -39,7 +39,7 @@ const PorjectDescription = ({
         transition={{
           delay: 0.3,
         }}
-        className="text-grey text-center text-lg"
+        className="text-grey text-center text-lg mb-8"
       >
         {description}
       </motion.p>

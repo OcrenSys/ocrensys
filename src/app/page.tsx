@@ -1,19 +1,13 @@
-import About from "@/components/about";
-import { TAbout } from "@/core/types/about.type";
-import { promises as fs } from "fs";
-import path from "path";
+import About from '@/app/ui/about';
+import { TInformation } from './lib/definitions';
+import { InformationData as data } from './lib/palceholder_data';
 
-async function getData() {
-  const _directory = path.join(process.cwd(), "src/config/data");
-  const _path: string = `${_directory}/about.json`;
-  const data = await fs.readFile(_path, "utf8");
-
-  return { data };
+function getData(): TInformation {
+  return data;
 }
 
-const HomePage = async (props: any) => {
-  const result: { data: string } = await getData();
-  const data: TAbout = JSON.parse(result.data);
+const HomePage = () => {
+  const data = getData();
 
   return (
     <div className="w-full">
