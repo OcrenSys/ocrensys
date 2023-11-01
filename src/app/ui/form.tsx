@@ -17,7 +17,7 @@ const Form = (props: any) => {
   const { values, isLoading, error } = state;
 
   return (
-    <form className="px-8 pt-6 pb-8 mb-4">
+    <form className="px-8 pt-6 pb-8 mb-4 w-full">
       <div className="mb-4">
         <Input
           isClearable
@@ -88,7 +88,9 @@ const Form = (props: any) => {
         </Button>
       </div>
 
-      <Toast message="¡EMail enviado exitosamente!"></Toast>
+      <div className="hidden">
+        <Toast message="¡EMail enviado exitosamente!"></Toast>
+      </div>
     </form>
   );
 };
