@@ -1,3 +1,8 @@
+export type TProps = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
 export type TInformation = {
   hi: string;
   roles: string;
@@ -6,6 +11,13 @@ export type TInformation = {
   getInTouch: string;
   image: string;
   social: TSocialUrls;
+};
+
+export type TEmailSend = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
 };
 
 export type TSocialUrls = {
