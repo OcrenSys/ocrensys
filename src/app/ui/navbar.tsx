@@ -18,7 +18,6 @@ import clsx from 'clsx';
 
 const Navbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
 

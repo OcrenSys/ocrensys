@@ -1,25 +1,39 @@
 import { useState, useMemo } from 'react';
-import { TEmailSend } from '../definitions';
+import {
+  TEmailSend,
+  TEmailSendTouched,
+  TPropsForm,
+  TResendParameters,
+  TState,
+} from '../definitions';
 import { POST } from '../../api/send/route';
 import { Theme, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+function fetchData(): TResendParameters {
+  return {
+    API_KEY: process.env.NEXT_PUBLIC_RESEND_API_KEY || '',
+    EMAIL: process.env.NEXT_PUBLIC_EMAIL || '',
+  };
+}
+
 const initValues: TEmailSend = {
-  name: '',
   email: '',
   subject: '',
   message: '',
 };
 
-type TState = { error: string; isLoading: boolean; values: TEmailSend };
+const initState: TState = {
+  isLoading: false,
+  error: '',
+  values: initValues,
+};
 
-const initState: TState = { isLoading: false, error: '', values: initValues };
-
-export default function useForm() {
+export default function useForm(): TPropsForm {
+  const config = fetchData() as TResendParameters;
   const [state, setState] = useState<TState>(initState);
-  const [touched, setTouched] = useState({});
-
-  const { values, isLoading, error } = state;
+  const [touched, setTouched] = useState<TEmailSendTouched>({});
+  const { values } = state;
 
   const validateEmail = (value: string) =>
     value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
@@ -30,10 +44,13 @@ export default function useForm() {
     return validateEmail(state.values.email) ? false : true;
   }, [state.values.email]);
 
-  const onBlur = ({ target }: any) =>
+  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { target } = event;
     setTouched((prev) => ({ ...prev, [target.name]: true }));
+  };
 
-  const handleChange = ({ target }: any) =>
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { target } = event;
     setState((prev) => ({
       ...prev,
       values: {
@@ -41,6 +58,7 @@ export default function useForm() {
         [target.name]: target.value,
       },
     }));
+  };
 
   const onNotify = (message: string, theme?: Theme) =>
     toast(`${message}`, {
@@ -55,7 +73,7 @@ export default function useForm() {
     });
 
   const onSubmit = async () => {
-    if (values.name && values.message) {
+    if (values.subject && values.message) {
       if (values.email && !isInvalidEmail) {
         setState((prev) => ({
           ...prev,
@@ -63,7 +81,7 @@ export default function useForm() {
         }));
 
         try {
-          await POST(values);
+          await POST({ ...values, ...config });
           setTouched({});
           setState(initState);
           onNotify('Email was sendding successfully!');
@@ -84,7 +102,7 @@ export default function useForm() {
     } else {
       setTouched((prev) => ({
         ...prev,
-        name: true,
+        subject: true,
         message: true,
       }));
     }

@@ -1,4 +1,4 @@
-import Contact from './contact';
+import Contact from './_contact/contact';
 import Projects from './projects';
 import About from './about';
 

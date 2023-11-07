@@ -3,6 +3,17 @@ export type TProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+export type TPropsForm = {
+  state: TState;
+  touched: TEmailSendTouched;
+  setState: Function;
+  setTouched: Function;
+  handleChange: any;
+  onBlur: any;
+  onSubmit: Function;
+  isInvalidEmail: boolean;
+};
+
 export type TInformation = {
   hi: string;
   roles: string;
@@ -14,10 +25,22 @@ export type TInformation = {
 };
 
 export type TEmailSend = {
-  name: string;
+  name?: string;
   email: string;
   subject: string;
   message: string;
+};
+
+export type TEmailSendTouched = {
+  name?: boolean;
+  email?: boolean;
+  subject?: boolean;
+  message?: boolean;
+};
+
+export type TResendParameters = {
+  API_KEY: string;
+  EMAIL: string;
 };
 
 export type TSocialUrls = {
@@ -43,4 +66,10 @@ export type TProjectItem = {
   description?: string;
   image?: string;
   url?: string;
+};
+
+export type TState = {
+  error: string;
+  isLoading: boolean;
+  values: TEmailSend;
 };

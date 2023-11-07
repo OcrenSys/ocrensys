@@ -1,23 +1,27 @@
 import { EmailTemplate } from '@/app/ui/email-template';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { TEmailSend, TResendParameters } from '../../lib/definitions';
 
-const { RESEND_API_KEY, EMAIL } = process.env;
-const resend = new Resend(new String(RESEND_API_KEY).toString() || '');
-const sender = new String(new String(EMAIL).toString() || '');
+type TProps = TEmailSend & TResendParameters;
 
-export async function POST(props: any) {
-  const { name = '', email = '', subject = '', message = '' } = props;
-  const from: string = `${name} ${email}`;
-  const to: string[] = [sender.toString()];
+export async function POST({
+  subject = '',
+  email = '',
+  message = '',
+  API_KEY = '',
+  EMAIL = '',
+}: any) {
+  const from: string = `${subject} ${'<resend@resend.dev>'}`;
+  const to: string[] = [EMAIL];
 
   try {
-    const data = await resend.emails.send({
+    const data = await new Resend(API_KEY).emails.send({
       from,
       to,
       subject,
       text: message,
-      react: EmailTemplate({ name, message }),
+      react: EmailTemplate({ subject, message, email }),
     });
 
     return NextResponse.json(data);
