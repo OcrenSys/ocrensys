@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import useForm from '../lib/hooks/useForm';
-import Toast from './toast';
+import { ToastContainer } from 'react-toastify';
 
 const Form = (props: any) => {
   const {
@@ -79,7 +79,6 @@ const Form = (props: any) => {
       <div className="flex items-center justify-start max-w-md px-3">
         <Button
           isLoading={isLoading}
-          disabled={!values.name || !values.email || !values.message}
           color="primary"
           variant="shadow"
           onClick={() => onSubmit()}
@@ -87,10 +86,7 @@ const Form = (props: any) => {
           Send
         </Button>
       </div>
-
-      <div className="hidden">
-        <Toast message="¡EMail enviado exitosamente!"></Toast>
-      </div>
+      <ToastContainer />
     </form>
   );
 };

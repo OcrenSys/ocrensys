@@ -10,12 +10,11 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faMedium } from '@fortawesome/free-brands-svg-icons/faMedium';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { TInformation } from '../lib/definitions';
+import { TInformation } from './lib/definitions';
+import { InformationData as data } from './lib/palceholder_data';
 import clsx from 'clsx';
 
-type TProps = { data: unknown };
-
-const About = (props: TProps) => {
+const About = () => {
   const {
     hi,
     roles,
@@ -23,8 +22,8 @@ const About = (props: TProps) => {
     skills,
     getInTouch,
     image,
-    social,
-  }: TInformation = props.data as TInformation;
+    social, 
+  }: TInformation = data as TInformation;
 
   const container = {
     hidden: { opacity: 0 },
@@ -76,7 +75,7 @@ const About = (props: TProps) => {
             custom={2}
             variants={item}
             className={
-              'text-2xl font-medium mt-2 text-primary-50 text-center md:text-left lg:text-left xl:text-left'
+              'text-xl md:text-2xl font-medium mt-2 text-primary-50 text-center md:text-left lg:text-left xl:text-left'
             }
           >
             {roles || ''}{' '}

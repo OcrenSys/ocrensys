@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import { TEmailSend } from '../definitions';
 import { POST } from '../../api/send/route';
+import { Theme, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initValues: TEmailSend = {
   name: '',
@@ -21,7 +23,6 @@ export default function useForm() {
 
   const validateEmail = (value: string) =>
     value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
-  // value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
 
   const isInvalidEmail = useMemo(() => {
     if (state.values.email === '') return false;
@@ -41,20 +42,50 @@ export default function useForm() {
       },
     }));
 
+  const onNotify = (message: string, theme?: Theme) =>
+    toast(`${message}`, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: theme || 'light',
+    });
+
   const onSubmit = async () => {
-    setState((prev) => ({
-      ...prev,
-      isLoading: true,
-    }));
-    try {
-      await POST(values);
-      setTouched({});
-      setState(initState);
-    } catch (error: any) {
-      setState((prev) => ({
+    if (values.name && values.message) {
+      if (values.email && !isInvalidEmail) {
+        setState((prev) => ({
+          ...prev,
+          isLoading: true,
+        }));
+
+        try {
+          await POST(values);
+          setTouched({});
+          setState(initState);
+          onNotify('Email was sendding successfully!');
+        } catch (error: any) {
+          setState((prev) => ({
+            ...prev,
+            isLoading: false,
+            error: error.message,
+          }));
+          onNotify('Sorry, something was wrong, try again.', 'colored');
+        }
+      } else {
+        setTouched((prev) => ({
+          ...prev,
+          email: true,
+        }));
+      }
+    } else {
+      setTouched((prev) => ({
         ...prev,
-        isLoading: false,
-        error: error.message,
+        name: true,
+        message: true,
       }));
     }
   };

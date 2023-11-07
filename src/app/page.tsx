@@ -1,19 +1,21 @@
-import About from '@/app/ui/about';
-import { TInformation } from './lib/definitions';
-import { InformationData as data } from './lib/palceholder_data';
-
-function getData(): TInformation {
-  return data;
-}
+import Contact from './contact';
+import Projects from './projects';
+import About from './about';
 
 const HomePage = () => {
-  const data = getData();
-
   return (
-    <div className="w-full">
+    <div className="w-full min-h-full">
       <div className="grid grid-flow-row auto-rows-max">
         <div className="grid grid-cols-1">
-          <About data={data || {}}></About>
+          <div id="About" className="my-4">
+            <About></About>
+          </div>
+          <div id="Projects" className="my-4">
+            <Projects></Projects>
+          </div>
+          <div id="Contact" className="my-4">
+            <Contact></Contact>
+          </div>
         </div>
       </div>
     </div>

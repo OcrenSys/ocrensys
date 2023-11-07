@@ -36,11 +36,16 @@ const Card = ({ project, index }: TProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       transition={{
-        duration: index * 0.5,
-        delay: 0.1,
-        ease: [0, 0.5, 0.2, 1.5],
+        duration: 0.3,
+        ease: [0, 0.71, 0.2, 1.01],
+        scale: {
+          type: 'spring',
+          damping: 8,
+          stiffness: 50,
+          restDelta: 0.001,
+        },
       }}
       className="w-full mb-8 relative flex flex-col text-gray-700 bg-white shadow-md rounded-xl bg-clip-border"
     >

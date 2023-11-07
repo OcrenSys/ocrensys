@@ -20,7 +20,7 @@ const Navbar = () => {
   const pathname = usePathname();
   console.log(pathname);
 
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
 
   interface IMenu {
     title: string;
@@ -31,17 +31,17 @@ const Navbar = () => {
   const menu: IMenu[] = [
     {
       title: 'Home',
-      url: '/',
+      url: '#About',
       icon: <FontAwesomeIcon className="text-white" icon={faHouse} />,
     },
     {
       title: 'Projects',
-      url: '/projects',
+      url: '#Projects',
       icon: <FontAwesomeIcon className="text-white" icon={faCode} />,
     },
     {
       title: 'Contact',
-      url: '/contact',
+      url: '#Contact',
       icon: <FontAwesomeIcon className="text-white" icon={faEnvelope} />,
     },
   ];
