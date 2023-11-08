@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { motion, animate, Variant } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ANIMATE, TVariant } from '../lib/definitions';
 
 type Props = {

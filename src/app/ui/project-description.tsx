@@ -16,7 +16,7 @@ const PorjectDescription = ({
     const animation = animate(count, 7, { duration: 2 });
 
     return animation.stop;
-  }, []);
+  }, [count]);
 
   return (
     <div>
