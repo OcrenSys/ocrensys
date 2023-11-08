@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import useForm from '../lib/hooks/useForm';

@@ -1,9 +1,6 @@
 import { EmailTemplate } from '@/app/ui/email-template';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { TEmailSend, TResendParameters } from '../../lib/definitions';
-
-type TProps = TEmailSend & TResendParameters;
 
 export async function POST({
   subject = '',

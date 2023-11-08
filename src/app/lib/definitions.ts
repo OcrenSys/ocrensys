@@ -73,3 +73,18 @@ export type TState = {
   isLoading: boolean;
   values: TEmailSend;
 };
+
+export enum ANIMATE {
+  LEFT_TO_RIGHT = 'left_to_right',
+  RIGHT_TO_LEFT = 'right_to_left',
+  UP_TO_DOWN = 'up_to_down',
+  DOWN_TO_UP = 'down_to_up',
+  IN = 'in',
+  OUT = 'out',
+}
+
+export type TVariant = {
+  initial?: object;
+  animate?: object;
+  transition?: object;
+};
