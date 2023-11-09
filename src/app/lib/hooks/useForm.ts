@@ -1,25 +1,29 @@
 import { useState, useMemo } from 'react';
-import { TEmailSend } from '../definitions';
-import { POST } from '../../api/send/route';
+import {
+  TEmailSend,
+  TEmailSendTouched,
+  TPropsForm,
+  TState,
+} from '../definitions';
 import { Theme, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const initValues: TEmailSend = {
-  name: '',
-  email: '',
   subject: '',
+  email: '',
   message: '',
 };
 
-type TState = { error: string; isLoading: boolean; values: TEmailSend };
+const initState: TState = {
+  isLoading: false,
+  error: '',
+  values: initValues,
+};
 
-const initState: TState = { isLoading: false, error: '', values: initValues };
-
-export default function useForm() {
+export default function useForm(): TPropsForm {
   const [state, setState] = useState<TState>(initState);
-  const [touched, setTouched] = useState({});
-
-  const { values, isLoading, error } = state;
+  const [touched, setTouched] = useState<TEmailSendTouched>({});
+  const { values } = state;
 
   const validateEmail = (value: string) =>
     value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
@@ -30,10 +34,13 @@ export default function useForm() {
     return validateEmail(state.values.email) ? false : true;
   }, [state.values.email]);
 
-  const onBlur = ({ target }: any) =>
+  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { target } = event;
     setTouched((prev) => ({ ...prev, [target.name]: true }));
+  };
 
-  const handleChange = ({ target }: any) =>
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { target } = event;
     setState((prev) => ({
       ...prev,
       values: {
@@ -41,6 +48,7 @@ export default function useForm() {
         [target.name]: target.value,
       },
     }));
+  };
 
   const onNotify = (message: string, theme?: Theme) =>
     toast(`${message}`, {
@@ -55,7 +63,7 @@ export default function useForm() {
     });
 
   const onSubmit = async () => {
-    if (values.name && values.message) {
+    if (values.subject && values.message) {
       if (values.email && !isInvalidEmail) {
         setState((prev) => ({
           ...prev,
@@ -63,7 +71,7 @@ export default function useForm() {
         }));
 
         try {
-          await POST(values);
+          const result = await handleFetch();
           setTouched({});
           setState(initState);
           onNotify('Email was sendding successfully!');
@@ -84,10 +92,17 @@ export default function useForm() {
     } else {
       setTouched((prev) => ({
         ...prev,
-        name: true,
+        subject: true,
         message: true,
       }));
     }
+  };
+
+  const handleFetch = async () => {
+    await fetch('api/email', {
+      method: 'POST',
+      body: JSON.stringify(values),
+    });
   };
 
   return {

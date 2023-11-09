@@ -1,10 +1,10 @@
-'use client';
 import React from 'react';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import useForm from '../lib/hooks/useForm';
 import { ToastContainer } from 'react-toastify';
+import { TPropsForm } from '../lib/definitions';
 
-const Form = (props: any) => {
+const Form = () => {
   const {
     state,
     touched,
@@ -12,7 +12,7 @@ const Form = (props: any) => {
     onBlur,
     onSubmit,
     isInvalidEmail,
-  }: any = useForm();
+  }: TPropsForm = useForm();
 
   const { values, isLoading, error } = state;
 
@@ -22,14 +22,14 @@ const Form = (props: any) => {
         <Input
           isClearable
           type="text"
-          name="name"
-          label="Nombre"
+          name="subject"
+          label="Subject"
           variant="bordered"
           errorMessage={
-            touched.name && !values.name ? 'Debes ingresar un nombre' : ''
+            touched.subject && !values.subject ? 'Debes ingresar un nombre' : ''
           }
-          isInvalid={touched.name && !values.name}
-          value={values.name}
+          isInvalid={touched?.subject && !values?.subject}
+          value={values.subject}
           onChange={handleChange}
           onBlur={onBlur}
           className="bg-transparent w-full py-2 px-3 leading-tight focus:outline-none"
