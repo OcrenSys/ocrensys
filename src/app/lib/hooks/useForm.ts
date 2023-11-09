@@ -3,23 +3,14 @@ import {
   TEmailSend,
   TEmailSendTouched,
   TPropsForm,
-  TResendParameters,
   TState,
 } from '../definitions';
-import { POST } from '../../api/send/route';
 import { Theme, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function fetchData(): TResendParameters {
-  return {
-    API_KEY: process.env.NEXT_PUBLIC_RESEND_API_KEY || '',
-    EMAIL: process.env.NEXT_PUBLIC_EMAIL || '',
-  };
-}
-
 const initValues: TEmailSend = {
-  email: '',
   subject: '',
+  email: '',
   message: '',
 };
 
@@ -30,7 +21,6 @@ const initState: TState = {
 };
 
 export default function useForm(): TPropsForm {
-  const config = fetchData() as TResendParameters;
   const [state, setState] = useState<TState>(initState);
   const [touched, setTouched] = useState<TEmailSendTouched>({});
   const { values } = state;
@@ -81,7 +71,7 @@ export default function useForm(): TPropsForm {
         }));
 
         try {
-          await POST({ ...values, ...config });
+          const result = await handleFetch();
           setTouched({});
           setState(initState);
           onNotify('Email was sendding successfully!');
@@ -106,6 +96,13 @@ export default function useForm(): TPropsForm {
         message: true,
       }));
     }
+  };
+
+  const handleFetch = async () => {
+    await fetch('api/email', {
+      method: 'POST',
+      body: JSON.stringify(values),
+    });
   };
 
   return {
