@@ -4,7 +4,6 @@ import React from 'react';
 import { ubuntu } from '../ui/fonts';
 import Form from '../ui/form';
 import FadeAnimation from '../ui/fadeAnimation';
-import { ANIMATE } from '../lib/definitions';
 
 const Contact = () => {
   return (

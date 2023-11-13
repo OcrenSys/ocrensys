@@ -2,10 +2,10 @@ import { TProject } from './definitions';
 
 export const InformationData = {
   hi: "HI!, I'm Jairo",
-  roles: 'Software developer',
+  roles: '',
   description:
     "I'm a highly skilled software developer with over five years of experience, driven by a deep passion for achieving both personal and professional growth.",
-  skills: ['Angular', 'React', 'NestJS'],
+  skills: ['Web Designer', 'Frontend Developer'],
   getInTouch: 'Get in touch',
   image: '/images/picture.png',
   social: {

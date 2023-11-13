@@ -15,6 +15,7 @@ import { faCode, faEnvelope, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
+import { montserrat, ubuntu } from './fonts';
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -45,28 +46,32 @@ const Navbar = () => {
     },
   ];
 
-  const variants = {
-    open: {
-      y: 0,
-      opacity: 1,
+  const containerVars = {
+    initial: {
       transition: {
-        y: { stiffness: 1000, velocity: -100 },
+        staggerChildren: 0.09,
+        staggerDirection: -1,
       },
     },
-    closed: {
-      y: 50,
-      opacity: 0,
+    open: {
       transition: {
-        y: { stiffness: 1000 },
+        delayChildren: 0.3,
+        staggerChildren: 0.09,
+        staggerDirection: 1,
       },
     },
   };
 
+  const background =
+    'backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent';
   return (
     <Nav
       onMenuOpenChange={setIsMenuOpen}
       shouldHideOnScroll
-      className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% | border-b border-slate-900/10 lg:px-8 dark:border-slate-300/10"
+      className={clsx(
+        background,
+        'border-b border-slate-900/10 lg:px-8 dark:border-slate-300/10',
+      )}
     >
       <NavbarContent>
         <NavbarBrand>
@@ -85,10 +90,10 @@ const Navbar = () => {
         {menu.map(({ title, url, icon }, index) => (
           <NavbarMenuItem
             key={index}
-            className={clsx('text-end', { isActive: pathname === url })}
+            className={clsx('text-end')}
           >
             <Link
-              className={clsx('text-white', { isActive: pathname === url })}
+              className={clsx('text-white')}
               href={url}
             >
               {title}
@@ -98,22 +103,21 @@ const Navbar = () => {
       </NavbarContent>
 
       <NavbarMenu>
-        {menu.map(({ title, url, icon }, index) => (
-          <motion.li
-            key={index}
-            variants={variants}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <NavbarMenuItem
-              className={clsx('text-end', { isActive: pathname === url })}
-            >
-              <Link className="text-white text-3xl my-4 font-light" href={url}>
-                {title}
-              </Link>
-            </NavbarMenuItem>
-          </motion.li>
-        ))}
+        <motion.div
+          variants={containerVars}
+          initial="initial"
+          animate="open"
+          exit="initial"
+          className="flex flex-col h-full justify-center items-center gap-4 "
+        >
+          {menu.map(({ title, url }: IMenu, index: number) => {
+            return (
+              <div key={index} className="overflow-hidden">
+                <MobileNavLink title={title} href={url} />
+              </div>
+            );
+          })}
+        </motion.div>
       </NavbarMenu>
       <NavbarMenuToggle
         aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -123,3 +127,38 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+
+/* ******************************************** */
+/* ******************************************** */
+
+const mobileLinkVars = {
+  initial: {
+    y: '30vh',
+    transition: {
+      duration: 0.5,
+      ease: [0.37, 0, 0.63, 1],
+    },
+  },
+  open: {
+    y: 0,
+    transition: {
+      ease: [0, 0.55, 0.45, 1],
+      duration: 0.7,
+    },
+  },
+};
+const MobileNavLink = ({ title, href }: any) => {
+  return (
+    <motion.div variants={mobileLinkVars}>
+      <Link
+        className={clsx(
+          montserrat.className,
+          'text-center text-white text-5xl font-semi-bold  my-4',
+        )}
+        href={href}
+      >
+        {title}
+      </Link>
+    </motion.div>
+  );
+};

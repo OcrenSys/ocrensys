@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Spinner } from '@nextui-org/react';
 
-const Loading = () => {
+export default function Loading() {
   return (
-    <div>loading</div>
-  )
+    <div className="flex w-full items-start justify-center gap-4">
+      <Spinner label="Loading" color="primary" labelColor="foreground" />
+    </div>
+  );
 }
-
-export default Loading

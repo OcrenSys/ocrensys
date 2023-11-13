@@ -21,15 +21,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={clsx(montserrat.className, 'antialiased')}>
-        <div className="min-h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-          <Navbar></Navbar>
-          <Provider>
-            <main className="teal-dark min-h-screen flex self-center items-center md:items-start lg:items-start xl:items-start content-start md:content-center lg:content-center justify-between px-12 md:px-24 lg:px-36 xl:px-48 mt-12 md:mt-6 py-2 md:py-6 lg:py-6 | bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-              <Suspense fallback={<Loading />}>{children}</Suspense>
-            </main>
-          </Provider>
-        </div>
+      <body
+        className={clsx(
+          montserrat.className,
+          'bg-gradient-to-r from-secondary-100 from-10%  via-secondary-50 via-30% to-secondary-100 to-90%',
+          'antialiased min-h-screen ',
+        )}
+      >
+        <Navbar></Navbar>
+        <Provider>
+          <main
+            className={clsx(
+              'min-h-screen flex self-center items-center md:items-start lg:items-start xl:items-start content-start md:content-center lg:content-center justify-between px-12 md:px-24 lg:px-36 xl:px-48 mt-12 md:mt-6 py-2 md:py-6 lg:py-6',
+            )}
+          >
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </main>
+        </Provider>
+        {/* </div> */}
       </body>
     </html>
   );

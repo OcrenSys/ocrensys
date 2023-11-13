@@ -14,6 +14,7 @@ import { ANIMATE, TInformation } from './lib/definitions';
 import { InformationData as data } from './lib/palceholder_data';
 import clsx from 'clsx';
 import FadeAnimation from './ui/fadeAnimation';
+import { ubuntu } from './ui/fonts';
 
 const About = () => {
   const {
@@ -44,26 +45,30 @@ const About = () => {
         </FadeAnimation>
 
         <FadeAnimation animate={ANIMATE.LEFT_TO_RIGHT}>
-          <h1 className="text-5xl font-bold text-center md:text-left lg:text-left xl:text-left">
+          <h1 className="text-3xl md:text-6xl font-bold text-center md:text-left lg:text-left xl:text-left">
             {hi || ''}
           </h1>
           <h2
             className={
-              'text-xl md:text-2xl font-medium mt-2 text-primary-50 text-center md:text-left lg:text-left xl:text-left'
+              'text-2xl md:text-5xl font-medium mt-2 text-white text-center md:text-left lg:text-left xl:text-left'
             }
           >
             {roles || ''}{' '}
             <Typed
+              className={clsx(
+                ubuntu.className,
+                'text-2xl md:text-5xl font-extrabold mt-2 text-white text-center md:text-left lg:text-left xl:text-left',
+              )}
               strings={skills || []}
-              typeSpeed={150}
-              backSpeed={60}
+              typeSpeed={100}
+              backSpeed={100}
               cursorChar="_"
               loop
             />
           </h2>
           <p
             className={clsx(
-              'mt-6 font-light text-lg text-center md:text-left lg:text-left xl:text-left',
+              'text-xl md:text-2xl font-light text-center md:text-left lg:text-left xl:text-left mt-6 mb-2',
             )}
           >
             {description}
@@ -84,7 +89,8 @@ const About = () => {
           }}
           className="mt-4 flex justify-center md:justify-start lg:justify-start xl:justify-start"
         >
-          <Link href={'/contact'}>
+          {/* <FadeAnimation animate={ANIMATE.LEFT_TO_RIGHT}> */}
+          <Link href={'#contact'}>
             <Button
               className="w-auto mr-4"
               radius="full"
@@ -129,6 +135,7 @@ const About = () => {
             <FontAwesomeIcon icon={faLinkedin} />
           </Button>
         </motion.div>
+        {/* </FadeAnimation> */}
       </div>
       <div className="hidden content-center align-middle justify-center md:justify-end md:flex">
         <FadeAnimation animate={ANIMATE.IN}>
