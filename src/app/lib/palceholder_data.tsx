@@ -4,7 +4,7 @@ export const InformationData = {
   hi: "HI!, I'm Jairo",
   roles: '',
   description:
-    "I'm a highly skilled software developer with over five years of experience, driven by a deep passion for achieving both personal and professional growth.",
+    'Software developer with 5+ years of experience as a software developer. With a strong foundation in these frameworks, I have successfully developed and delivered numerous projects, using technologias such as Angular, React, NextJS, NestJS and more.',
   skills: ['Web Designer', 'Frontend Developer'],
   getInTouch: 'Get in touch',
   image: '/images/picture.png',
@@ -16,7 +16,7 @@ export const InformationData = {
 };
 
 export const ProjectData: TProject = {
-  title: 'Software for real life',
+  title: 'Latest Projects',
   qualities: [
     {
       title: 'Developer Friendly',
@@ -32,24 +32,24 @@ export const ProjectData: TProject = {
     },
   ],
   description:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    'My proficiency extends to frontend and backend development, allowing me to design comprehensive solutions that cater to diverse business needs. Check projects to know more about my skills.',
   items: [
     {
-      title: 'Lorem Ipsum',
+      title: 'Ander Boutique App',
       description:
-        'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.',
+        'Manage all your IT and non-IT inventory with ease - anytime, anywhere.',
       image: '/projects/1.jpg',
     },
     {
-      title: 'Lorem Ipsum',
+      title: 'Ocrensys Portfolio',
       description:
         'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.',
       image: '/projects/2.jpg',
     },
     {
-      title: 'Lorem Ipsum',
+      title: 'Tatto Landing Page',
       description:
-        'Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen.',
+        'Tatoo landing page designed by York01. Connect with them on Dribbble; the global community for designers and creative professionals.',
       image: '/projects/3.jpg',
     },
     {

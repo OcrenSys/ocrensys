@@ -68,7 +68,7 @@ const About = () => {
           </h2>
           <p
             className={clsx(
-              'text-xl md:text-2xl font-light text-center md:text-left lg:text-left xl:text-left mt-6 mb-2',
+              'text-xl md:text-xl font-light text-center md:text-justify md:text-clip mt-6 mb-2',
             )}
           >
             {description}
@@ -89,13 +89,12 @@ const About = () => {
           }}
           className="mt-4 flex justify-center md:justify-start lg:justify-start xl:justify-start"
         >
-          {/* <FadeAnimation animate={ANIMATE.LEFT_TO_RIGHT}> */}
           <Link href={'#contact'}>
             <Button
               className="w-auto mr-4"
               radius="full"
               color="primary"
-              variant="solid"
+              variant="shadow"
             >
               {getInTouch}
               <FontAwesomeIcon icon={faArrowRight} />
@@ -135,7 +134,6 @@ const About = () => {
             <FontAwesomeIcon icon={faLinkedin} />
           </Button>
         </motion.div>
-        {/* </FadeAnimation> */}
       </div>
       <div className="hidden content-center align-middle justify-center md:justify-end md:flex">
         <FadeAnimation animate={ANIMATE.IN}>

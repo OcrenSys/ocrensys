@@ -7,19 +7,16 @@ import {
   Link,
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem,
+  NavbarItem,
 } from '@nextui-org/react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faEnvelope, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { montserrat, ubuntu } from './fonts';
+import { montserrat } from './fonts';
 
 const Navbar = () => {
-  const pathname = usePathname();
-
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
 
   interface IMenu {
@@ -62,14 +59,13 @@ const Navbar = () => {
     },
   };
 
-  const background =
-    'backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent';
   return (
     <Nav
+      isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       shouldHideOnScroll
       className={clsx(
-        background,
+        'backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent',
         'border-b border-slate-900/10 lg:px-8 dark:border-slate-300/10',
       )}
     >
@@ -87,18 +83,12 @@ const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        {menu.map(({ title, url, icon }, index) => (
-          <NavbarMenuItem
-            key={index}
-            className={clsx('text-end')}
-          >
-            <Link
-              className={clsx('text-white')}
-              href={url}
-            >
+        {menu.map(({ title, url }, index) => (
+          <NavbarItem isActive key={index} className={clsx('text-end')}>
+            <Link className={clsx('text-white')} href={url}>
               {title}
             </Link>
-          </NavbarMenuItem>
+          </NavbarItem>
         ))}
       </NavbarContent>
 
@@ -113,12 +103,17 @@ const Navbar = () => {
           {menu.map(({ title, url }: IMenu, index: number) => {
             return (
               <div key={index} className="overflow-hidden">
-                <MobileNavLink title={title} href={url} />
+                <MobileNavLink
+                  setIsMenuOpen={setIsMenuOpen}
+                  title={title}
+                  href={url}
+                />
               </div>
             );
           })}
         </motion.div>
       </NavbarMenu>
+
       <NavbarMenuToggle
         aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
         className="sm:hidden"
@@ -147,7 +142,7 @@ const mobileLinkVars = {
     },
   },
 };
-const MobileNavLink = ({ title, href }: any) => {
+const MobileNavLink = ({ title, href, setIsMenuOpen, pathName }: any) => {
   return (
     <motion.div variants={mobileLinkVars}>
       <Link
@@ -156,6 +151,7 @@ const MobileNavLink = ({ title, href }: any) => {
           'text-center text-white text-5xl font-semi-bold  my-4',
         )}
         href={href}
+        onPress={() => setIsMenuOpen(false)}
       >
         {title}
       </Link>

@@ -18,7 +18,7 @@ const ScrollAnimation = ({ children }: any) => {
   const opacityProgress: MotionValue<number> = useTransform<unknown, number>(
     scrollYProgress,
     [0, 1],
-    [0.6, 1],
+    [0.8, 1],
   );
 
   return (

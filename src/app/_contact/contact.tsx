@@ -9,13 +9,13 @@ const Contact = () => {
   return (
     <section className="h-full grid grid-cols-1 md:grid-cols-2 gap-4">
       <FadeAnimation>
-        <h1 className="max-w-md text-4xl font-bold text-center text-indigo-700 md:text-left lg:text-left xl:text-left my-1">
+        <h1 className="max-w-md text-4xl font-bold text-center text-indigo-700 md:text-left lg:text-left xl:text-left my-4">
           {'Get in touch'}
         </h1>
         <h2
           className={clsx(
             ubuntu.className,
-            'max-w-md text-white text-6xl text-center md:text-left lg:text-left xl:text-left font-semibold my-1',
+            'max-w-md text-white text-6xl text-center md:text-left lg:text-left xl:text-left font-semibold my-8',
           )}
         >
           {"Let's work together!"}
