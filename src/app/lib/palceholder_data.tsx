@@ -7,7 +7,8 @@ export const InformationData = {
     'Software developer with 5+ years of experience as a software developer. With a strong foundation in these frameworks, I have successfully developed and delivered numerous projects, using technologias such as Angular, React, NextJS, NestJS and more.',
   skills: ['Web Designer', 'Frontend Developer'],
   getInTouch: 'Get in touch',
-  image: '/images/picture.png',
+  imageLg: '/avatars/avatarlg.png',
+  imageSm: '/avatars/avatarsm.png',
   social: {
     github: 'https://github.com/OcrenSys?tab=repositories',
     medium: 'https://medium.com/@ocrensys',

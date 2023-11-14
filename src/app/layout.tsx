@@ -24,7 +24,7 @@ export default function RootLayout({
       <body
         className={clsx(
           montserrat.className,
-          'bg-gradient-to-r from-secondary-100 from-10%  via-secondary-50 via-30% to-secondary-100 to-90%',
+          'bg-cover bg-no-repeat bg-gradient-to-r from-secondary-100 from-10%  via-secondary-50 via-30% to-secondary-100 to-90%',
           'antialiased min-h-screen ',
         )}
       >

@@ -23,7 +23,8 @@ const About = () => {
     description,
     skills,
     getInTouch,
-    image,
+    imageLg,
+    imageSm,
     social,
   }: TInformation = data as TInformation;
 
@@ -36,7 +37,7 @@ const About = () => {
           <div></div>
           <div className="flex justify-center mx-auto mb-16 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px]  md:hidden relative">
             <Image
-              src={`${image}`}
+              src={`${imageSm}`}
               fill
               className="object-cover object-top  p-1 rounded-full ring-2 ring-gray-300 dark:ring-white"
               alt="logo"
@@ -139,7 +140,7 @@ const About = () => {
         <FadeAnimation animate={ANIMATE.IN}>
           <div></div>
           <Image
-            src={`${image}`}
+            src={`${imageLg}`}
             height={200}
             width={400}
             className="object-contain h-[400px]"
