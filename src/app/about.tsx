@@ -14,6 +14,7 @@ import { ANIMATE, TInformation } from './lib/definitions';
 import { InformationData as data } from './lib/palceholder_data';
 import clsx from 'clsx';
 import FadeAnimation from './ui/fadeAnimation';
+import { ubuntu } from './ui/fonts';
 
 const About = () => {
   const {
@@ -22,7 +23,8 @@ const About = () => {
     description,
     skills,
     getInTouch,
-    image,
+    imageLg,
+    imageSm,
     social,
   }: TInformation = data as TInformation;
 
@@ -35,7 +37,7 @@ const About = () => {
           <div></div>
           <div className="flex justify-center mx-auto mb-16 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px]  md:hidden relative">
             <Image
-              src={`${image}`}
+              src={`${imageSm}`}
               fill
               className="object-cover object-top  p-1 rounded-full ring-2 ring-gray-300 dark:ring-white"
               alt="logo"
@@ -44,26 +46,30 @@ const About = () => {
         </FadeAnimation>
 
         <FadeAnimation animate={ANIMATE.LEFT_TO_RIGHT}>
-          <h1 className="text-5xl font-bold text-center md:text-left lg:text-left xl:text-left">
+          <h1 className="text-3xl md:text-6xl font-bold text-center md:text-left lg:text-left xl:text-left">
             {hi || ''}
           </h1>
           <h2
             className={
-              'text-xl md:text-2xl font-medium mt-2 text-primary-50 text-center md:text-left lg:text-left xl:text-left'
+              'text-2xl md:text-5xl font-medium mt-2 text-white text-center md:text-left lg:text-left xl:text-left'
             }
           >
             {roles || ''}{' '}
             <Typed
+              className={clsx(
+                ubuntu.className,
+                'text-2xl md:text-5xl font-extrabold mt-2 text-white text-center md:text-left lg:text-left xl:text-left',
+              )}
               strings={skills || []}
-              typeSpeed={150}
-              backSpeed={60}
+              typeSpeed={100}
+              backSpeed={100}
               cursorChar="_"
               loop
             />
           </h2>
           <p
             className={clsx(
-              'mt-6 font-light text-lg text-center md:text-left lg:text-left xl:text-left',
+              'text-xl md:text-xl font-light text-center md:text-justify md:text-clip mt-6 mb-2',
             )}
           >
             {description}
@@ -84,12 +90,12 @@ const About = () => {
           }}
           className="mt-4 flex justify-center md:justify-start lg:justify-start xl:justify-start"
         >
-          <Link href={'/contact'}>
+          <Link href={'#contact'}>
             <Button
               className="w-auto mr-4"
               radius="full"
               color="primary"
-              variant="solid"
+              variant="shadow"
             >
               {getInTouch}
               <FontAwesomeIcon icon={faArrowRight} />
@@ -134,7 +140,7 @@ const About = () => {
         <FadeAnimation animate={ANIMATE.IN}>
           <div></div>
           <Image
-            src={`${image}`}
+            src={`${imageLg}`}
             height={200}
             width={400}
             className="object-contain h-[400px]"

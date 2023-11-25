@@ -1,37 +1,36 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
-import { Button } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { TProjectItem } from '../lib/definitions';
+import {
+  Card as Content,
+  CardHeader,
+  CardFooter,
+  Image,
+  Button,
+} from '@nextui-org/react';
+import { AngularIcon } from './svgs/angularicon';
 
-type TProps = { project: TProjectItem; index: number };
+const Card = ({ project }: any) => {
+  const { title, image, url }: TProjectItem = project;
 
-const Card = ({ project, index }: TProps) => {
-  const { title, description, image, url }: TProjectItem = project;
-
-  const container = {
-    visible: {
-      opacity: 1,
-      transition: {
-        when: 'beforeChildren',
-        staggerChildren: 0.1,
-      },
+  const techs = [
+    {
+      label: 'Ionic',
+      icon: <AngularIcon size={18} />,
     },
-    hidden: {
-      opacity: 0,
-      transition: {
-        when: 'afterChildren',
-      },
-    },
-  };
 
-  const card = {
-    visible: { opacity: 1, y: 0 },
-    hidden: { opacity: 0, y: 100 },
-  };
+    {
+      label: 'Angular',
+      icon: <FontAwesomeIcon className="text-sm" icon={faArrowRight} />,
+    },
+    {
+      label: 'Redux',
+      icon: <AngularIcon size={18} />,
+    },
+  ];
 
   return (
     <motion.div
@@ -47,28 +46,55 @@ const Card = ({ project, index }: TProps) => {
           restDelta: 0.001,
         },
       }}
-      className="w-full mb-8 relative flex flex-col text-gray-700 bg-white shadow-md rounded-xl bg-clip-border"
+      className="w-full mb-8"
     >
-      <div className="relative h-56  mx-4 -mt-12 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
-        <Image src={`${image}`} fill className="object-cover" alt="logo" />
-      </div>
-      <div className="px-6 py-2">
-        <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-          {title}
-        </h5>
-      </div>
-      <div className="px-6 pb-4 pt-0">
-        <div className="mt-4 flex flex-wrap">
+      <Content
+        isFooterBlurred
+        className="w-full h-[300px] col-span-12 sm:col-span-7 border-1 border-white p-1"
+      >
+        <CardHeader className="absolute z-10 top-1 flex-col items-start">
+          <p className="text-tiny text-white/60 uppercase font-bold">
+            Landing Page
+          </p>
+          <h4 className="text-white/90 font-medium text-xl">{title}</h4>
+        </CardHeader>
+        <Image
+          removeWrapper
+          alt="Relaxing app background"
+          className="z-0 w-full h-full object-cover"
+          src={image}
+        />
+        <CardFooter className="opacity-0 hover:opacity-100 transition-all duration-1000 absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+          <div className="flex flex-grow gap-2 items-center">
+            <Image
+              alt="Breathing app icon"
+              className="rounded-full object-cover w-10 h-10 bg-black"
+              src={image}
+            />
+            <div className="flex flex-col">
+              <p className="text-tiny text-white/90">
+                {title}
+                {/* {
+                  <div className="flex gap-1">
+                    {techs.map(({ label, icon, index }: any) => (
+                      <Chip key={index} label={label} icon={icon}></Chip>
+                    ))}
+                  </div>
+                } */}
+              </p>
+            </div>
+          </div>
           <Button
-            className="mr-4 select-none bg-primary py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-primary-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            size="sm"
+            color="primary"
             radius="full"
-            variant="solid"
+            variant="shadow"
             aria-label="github"
           >
             Read More <FontAwesomeIcon icon={faArrowRight} />
           </Button>
-        </div>
-      </div>
+        </CardFooter>
+      </Content>
     </motion.div>
   );
 };

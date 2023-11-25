@@ -20,7 +20,8 @@ export type TInformation = {
   description: string;
   skills: string[];
   getInTouch: string;
-  image: string;
+  imageLg: string;
+  imageSm: string;
   social: TSocialUrls;
 };
 

@@ -126,6 +126,18 @@ const FadeAnimation = ({ children = [], animate }: Props) => {
     }
   };
 
+  const getChildren = (): Array<React.JSX.Element> => {
+    if (children) {
+      if (children instanceof Array) {
+        return children as React.JSX.Element[];
+      } else {
+        return [children] as React.JSX.Element[];
+      }
+    }
+
+    return [];
+  };
+
   return (
     <motion.div
       className="w-full"
