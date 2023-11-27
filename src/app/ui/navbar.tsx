@@ -16,20 +16,27 @@ import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { montserrat } from './fonts';
 
+interface IMenu {
+  title: string;
+  url: string;
+  icon: ReactElement<any, any>;
+}
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
-
-  interface IMenu {
-    title: string;
-    url: string;
-    icon: ReactElement<any, any>;
-  }
+  const [currentMenuItem, setIsCurrentMenuItem] =
+    React.useState<string>('Home');
 
   const menu: IMenu[] = [
     {
       title: 'Home',
-      url: '#About',
+      url: '#Home',
       icon: <FontAwesomeIcon className="text-white" icon={faHouse} />,
+    },
+    {
+      title: 'About',
+      url: '#About',
+      icon: <FontAwesomeIcon className="text-white" icon={faCode} />,
     },
     {
       title: 'Projects',
@@ -42,6 +49,10 @@ const Navbar = () => {
       icon: <FontAwesomeIcon className="text-white" icon={faEnvelope} />,
     },
   ];
+
+  const IsActive = (title: string): boolean | undefined => {
+    return title === currentMenuItem;
+  };
 
   const containerVars = {
     initial: {
@@ -63,11 +74,12 @@ const Navbar = () => {
     <Nav
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
+      isBordered
+      isBlurred
       shouldHideOnScroll
-      className={clsx(
-        'backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent',
-        'border-b border-slate-900/10 lg:px-8 dark:border-slate-300/10',
-      )}
+      classNames={{
+        base: 'backdrop-blur flex-none transition-colors duration-500 lg:z-50  bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent',
+      }}
     >
       <NavbarContent>
         <NavbarBrand>
@@ -84,8 +96,16 @@ const Navbar = () => {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
         {menu.map(({ title, url }, index) => (
-          <NavbarItem isActive key={index} className={clsx('text-end')}>
-            <Link className={clsx('text-white')} href={url}>
+          <NavbarItem
+            isActive={IsActive(title)}
+            key={index}
+            className={clsx('text-end')}
+          >
+            <Link
+              href={url}
+              onPress={() => setIsCurrentMenuItem(title)}
+              className={clsx('text-foreground')}
+            >
               {title}
             </Link>
           </NavbarItem>
@@ -102,13 +122,15 @@ const Navbar = () => {
         >
           {menu.map(({ title, url }: IMenu, index: number) => {
             return (
-              <div key={index} className="overflow-hidden">
+              <NavbarItem key={index} className="overflow-hidden h-[100px]">
                 <MobileNavLink
-                  setIsMenuOpen={setIsMenuOpen}
-                  title={title}
                   href={url}
+                  title={title}
+                  currentMenuItem={currentMenuItem}
+                  setIsCurrentMenuItem={setIsCurrentMenuItem}
+                  setIsMenuOpen={setIsMenuOpen}
                 />
-              </div>
+              </NavbarItem>
             );
           })}
         </motion.div>
@@ -142,16 +164,28 @@ const mobileLinkVars = {
     },
   },
 };
-const MobileNavLink = ({ title, href, setIsMenuOpen, pathName }: any) => {
+const MobileNavLink = ({
+  title,
+  href,
+  currentMenuItem,
+  setIsCurrentMenuItem,
+  setIsMenuOpen,
+}: any) => {
+  const handlePress = (title: string) => {
+    setIsCurrentMenuItem(title);
+    setIsMenuOpen(false);
+  };
+
   return (
     <motion.div variants={mobileLinkVars}>
       <Link
+        // color={title === currentMenuItem ? 'primary' : 'foreground'}
         className={clsx(
           montserrat.className,
-          'text-center text-white text-5xl font-semi-bold  my-4',
+          'text-center text-foreground text-5xl font-semi-bold  my-4',
         )}
         href={href}
-        onPress={() => setIsMenuOpen(false)}
+        onPress={() => handlePress(title)}
       >
         {title}
       </Link>

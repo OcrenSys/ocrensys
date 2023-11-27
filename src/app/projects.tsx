@@ -1,12 +1,12 @@
 import React from 'react';
 import Card from '@/app/ui/card';
 import PorjectDescription from '@/app/ui/project-description';
+import { ProjectData } from './lib/palceholder_data';
 import { TProjectItem } from './lib/definitions';
-import { ProjectData as data } from './lib/palceholder_data';
 import ScrollAnimation from './ui/scrollAnimation';
 
 const Projects = () => {
-  const { title, description, items } = data;
+  const { title, description, items } = ProjectData;
 
   return (
     <ScrollAnimation>

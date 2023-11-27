@@ -1,5 +1,3 @@
 {
-    "conventionalCommits.scopes": [
-        "theme"
-    ]
+  "conventionalCommits.scopes": ["theme", "update v14", "about"]
 }

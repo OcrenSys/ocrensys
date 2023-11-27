@@ -1,6 +1,6 @@
 import { TProject } from './definitions';
 
-export const InformationData = {
+export const HomeData = {
   hi: "HI!, I'm Jairo",
   roles: '',
   description:
@@ -15,6 +15,10 @@ export const InformationData = {
     likedIn: 'https://www.linkedin.com/in/jairo-martinez-a14b94240/',
   },
 };
+
+export const AboutData = {
+  
+}
 
 export const ProjectData: TProject = {
   title: 'Latest Projects',

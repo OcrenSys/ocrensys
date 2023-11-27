@@ -26,9 +26,9 @@ const PorjectDescription = ({
   return (
     <FadeAnimation>
       <h1 className="max-w-md text-white text-6xl text-center md:text-left lg:text-left xl:text-left font-semibold my-8">
-       {title}
+        {title}
       </h1>
-      <p className="text-xl md:text-xl font-light text-center md:text-justify md:text-clip mt-6 mb-16">
+      <p className="text-xl md:text-xl font-light text-center md:text-justify md:text-clip mt-6 mb-8">
         {description}
       </p>
       <Link href={'#contact'}>
