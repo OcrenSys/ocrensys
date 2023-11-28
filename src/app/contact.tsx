@@ -1,9 +1,9 @@
 'use client';
 import clsx from 'clsx';
 import React from 'react';
-import { ubuntu } from '../ui/fonts';
-import Form from '../ui/form';
-import FadeAnimation from '../ui/fadeAnimation';
+import { ubuntu } from './ui/fonts';
+import FadeAnimation from './ui/fadeAnimation';
+import Form from './ui/form';
 
 const Contact = () => {
   return (
