@@ -1,4 +1,4 @@
-import { TProject } from './definitions';
+import { TAbout, TProject } from './definitions';
 
 export const HomeData = {
   hi: "HI!, I'm Jairo",
@@ -16,9 +16,51 @@ export const HomeData = {
   },
 };
 
-export const AboutData = {
-  
-}
+export const AboutData: TAbout = {
+  title: 'What I Do',
+  description:
+    'I possess extensive knowledge in Angular, React, Next.js, Ionic, Nest.js, Docker, and other cutting-edge technologies',
+  imageLg: '/avatars/avatarlg.png',
+  imageSm: '/avatars/avatarsm.png',
+  skills: [
+    {
+      id: 1,
+      icon: '/tech/angular.png',
+      title: 'Angular V17+',
+      description:
+        'Mastering Angular, I architect and develop robust, scalable applications, leveraging its powerful features to deliver seamless, high-performance user experiences.',
+    },
+
+    {
+      id: 2,
+      icon: '/tech/react.png',
+      title: 'React V18+',
+      description:
+        'In React, I harness declarative syntax and component reusability for efficient UI development, ensuring scalable, interactive, and seamless applications.',
+    },
+    {
+      id: 3,
+      icon: '/tech/next.png',
+      title: 'NextJS V14+',
+      description:
+        'Leveraging Next.js, I achieve server-side rendering for optimal performance, SEO benefits, and streamlined development of dynamic, modern web applications.',
+    },
+    {
+      id: 4,
+      icon: '/tech/nest.png',
+      title: 'NestJS',
+      description:
+        'With NestJS, I optimize backend development through TypeScript, modular architecture, and efficient dependency injection, ensuring scalable and maintainable server-side applications.',
+    },
+    {
+      id: 5,
+      icon: '/tech/ionic.png',
+      title: 'Ionic Framework V6+',
+      description:
+        'In Ionic, I excel at crafting cross-platform mobile apps with a single codebase, offering seamless user experiences across diverse devices.',
+    },
+  ],
+};
 
 export const ProjectData: TProject = {
   title: 'Latest Projects',

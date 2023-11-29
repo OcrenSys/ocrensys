@@ -26,8 +26,19 @@ export type THome = {
 };
 
 export type TAbout = {
-  
-}
+  title: string;
+  description: string;
+  imageLg: string;
+  imageSm: string;
+  skills: TSkill[];
+};
+
+export type TSkill = {
+  id?: number;
+  icon?: string;
+  title: string;
+  description: string;
+};
 
 export type TEmailSend = {
   name?: string;
