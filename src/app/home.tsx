@@ -12,11 +12,12 @@ import { faMedium } from '@fortawesome/free-brands-svg-icons/faMedium';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { ANIMATE, THome } from './lib/definitions';
 import { HomeData } from './lib/palceholder_data';
-import clsx from 'clsx';
-import FadeAnimation from './ui/fadeAnimation';
 import { ubuntu } from './ui/fonts';
 
-const About = () => {
+import clsx from 'clsx';
+import FadeAnimation from './ui/fadeAnimation';
+
+const Home = () => {
   const {
     hi,
     roles,
@@ -151,4 +152,4 @@ const About = () => {
     </div>
   );
 };
-export default About;
+export default Home;
