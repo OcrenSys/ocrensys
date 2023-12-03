@@ -16,7 +16,7 @@ export type TPropsForm = {
 
 export type THome = {
   hi: string;
-  roles: string;
+  roles: string[];
   description: string;
   skills: string[];
   getInTouch: string;
@@ -63,6 +63,7 @@ export type TSocialUrls = {
   github: string;
   medium: string;
   likedIn: string;
+  whatsApp: string;
 };
 
 export type TProject = {

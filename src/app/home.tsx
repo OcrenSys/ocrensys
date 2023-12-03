@@ -1,5 +1,5 @@
 'use client';
-import Typed from 'react-typed';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,13 +16,13 @@ import { ubuntu } from './ui/fonts';
 
 import clsx from 'clsx';
 import FadeAnimation from './ui/fadeAnimation';
+import { TypeAnimation } from 'react-type-animation';
 
 const Home = () => {
   const {
     hi,
     roles,
     description,
-    skills,
     getInTouch,
     imageLg,
     imageSm,
@@ -55,17 +55,13 @@ const Home = () => {
               'text-2xl md:text-5xl font-medium mt-2 text-white text-center md:text-left lg:text-left xl:text-left'
             }
           >
-            {roles || ''}{' '}
-            <Typed
+            <TypeAnimation
               className={clsx(
                 ubuntu.className,
                 'text-2xl md:text-5xl font-extrabold mt-2 text-white text-center md:text-left lg:text-left xl:text-left',
               )}
-              strings={skills || []}
-              typeSpeed={100}
-              backSpeed={100}
-              cursorChar="_"
-              loop
+              sequence={[roles[0], 1500, roles[1], 800]}
+              repeat={Infinity}
             />
           </h2>
           <p
