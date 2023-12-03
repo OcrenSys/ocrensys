@@ -1,9 +1,9 @@
 'use client';
 import clsx from 'clsx';
 import React from 'react';
-import { ubuntu } from '../ui/fonts';
-import Form from '../ui/form';
-import FadeAnimation from '../ui/fadeAnimation';
+import { ubuntu } from './ui/fonts';
+import FadeAnimation from './ui/fadeAnimation';
+import Form from './ui/form';
 
 const Contact = () => {
   return (
@@ -24,7 +24,7 @@ const Contact = () => {
 
       <FadeAnimation>
         <div></div>
-        <div className="max-w-md border-1 rounded-2xl shadow-md flex items-center content-start">
+        <div className="w-full border-1 rounded-2xl shadow-md flex items-center content-start">
           <Form></Form>
         </div>
       </FadeAnimation>

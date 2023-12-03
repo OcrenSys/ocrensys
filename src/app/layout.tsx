@@ -32,7 +32,9 @@ export default function RootLayout({
         <Provider>
           <main
             className={clsx(
-              'min-h-screen flex self-center items-center md:items-start lg:items-start xl:items-start content-start md:content-center lg:content-center justify-between px-12 md:px-24 lg:px-36 xl:px-48 mt-12 md:mt-6 py-2 md:py-6 lg:py-6',
+              'px-12 md:px-24 lg:px-36 xl:px-48 | py-2 md:py-2 lg:py-6 xl:py-8',
+              'mt-4 md:mt-2',
+              'min-h-screen flex self-center items-center md:items-start lg:items-start xl:items-start content-start md:content-center lg:content-center justify-between',
             )}
           >
             <Suspense fallback={<Loading />}>{children}</Suspense>

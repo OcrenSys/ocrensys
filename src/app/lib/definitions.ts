@@ -14,7 +14,7 @@ export type TPropsForm = {
   isInvalidEmail: boolean;
 };
 
-export type TInformation = {
+export type THome = {
   hi: string;
   roles: string;
   description: string;
@@ -23,6 +23,21 @@ export type TInformation = {
   imageLg: string;
   imageSm: string;
   social: TSocialUrls;
+};
+
+export type TAbout = {
+  title: string;
+  description: string;
+  imageLg: string;
+  imageSm: string;
+  skills: TSkill[];
+};
+
+export type TSkill = {
+  id?: number;
+  icon?: string;
+  title: string;
+  description: string;
 };
 
 export type TEmailSend = {
