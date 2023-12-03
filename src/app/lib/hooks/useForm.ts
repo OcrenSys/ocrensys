@@ -71,7 +71,7 @@ export default function useForm(): TPropsForm {
         }));
 
         try {
-          const result = await handleFetch();
+          await handleFetch();
           setTouched({});
           setState(initState);
           onNotify('Email was sendding successfully!');
@@ -94,6 +94,7 @@ export default function useForm(): TPropsForm {
         ...prev,
         subject: true,
         message: true,
+        email: !values.email,
       }));
     }
   };

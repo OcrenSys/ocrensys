@@ -12,6 +12,7 @@ import {
   Button,
 } from '@nextui-org/react';
 import { AngularIcon } from './svgs/angularicon';
+import Chip from './chip';
 
 const Card = ({ project }: any) => {
   const { title, image, url }: TProjectItem = project;
@@ -34,37 +35,31 @@ const Card = ({ project }: any) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{
         duration: 0.3,
-        ease: [0, 0.71, 0.2, 1.01],
+        ease: [0, 0.3, 0.2, 0.5],
         scale: {
           type: 'spring',
-          damping: 8,
-          stiffness: 50,
-          restDelta: 0.001,
+          damping: 5,
+          stiffness: 30,
+          restDelta: 0.01,
         },
       }}
       className="w-full mb-8"
     >
       <Content
         isFooterBlurred
-        className="w-full h-[300px] col-span-12 sm:col-span-7 border-1 border-white p-1"
+        className="w-full h-[300px] col-span-12 sm:col-span-7 border-1 border-white"
       >
-        <CardHeader className="absolute z-10 top-1 flex-col items-start">
-          <p className="text-tiny text-white/60 uppercase font-bold">
-            Landing Page
-          </p>
-          <h4 className="text-white/90 font-medium text-xl">{title}</h4>
-        </CardHeader>
         <Image
           removeWrapper
           alt="Relaxing app background"
           className="z-0 w-full h-full object-cover"
           src={image}
         />
-        <CardFooter className="opacity-0 hover:opacity-100 transition-all duration-1000 absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+        <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
           <div className="flex flex-grow gap-2 items-center">
             <Image
               alt="Breathing app icon"
@@ -72,16 +67,7 @@ const Card = ({ project }: any) => {
               src={image}
             />
             <div className="flex flex-col">
-              <p className="text-tiny text-white/90">
-                {title}
-                {/* {
-                  <div className="flex gap-1">
-                    {techs.map(({ label, icon, index }: any) => (
-                      <Chip key={index} label={label} icon={icon}></Chip>
-                    ))}
-                  </div>
-                } */}
-              </p>
+              <p className="text-tiny text-white/90">{title}</p>
             </div>
           </div>
           <Button

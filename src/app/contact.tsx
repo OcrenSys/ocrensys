@@ -24,7 +24,7 @@ const Contact = () => {
 
       <FadeAnimation>
         <div></div>
-        <div className="max-w-md border-1 rounded-2xl shadow-md flex items-center content-start">
+        <div className="w-full border-1 rounded-2xl shadow-md flex items-center content-start">
           <Form></Form>
         </div>
       </FadeAnimation>

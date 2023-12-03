@@ -4,7 +4,7 @@ export const HomeData = {
   hi: "HI!, I'm Jairo",
   roles: '',
   description:
-    'Software developer with 5+ years of experience as a software developer. With a strong foundation in these frameworks, I have successfully developed and delivered numerous projects, using technologias such as Angular, React, NextJS, NestJS and more.',
+    'The only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle.',
   skills: ['Web Designer', 'Frontend Developer'],
   getInTouch: 'Get in touch',
   imageLg: '/avatars/avatarlg.png',
@@ -19,7 +19,7 @@ export const HomeData = {
 export const AboutData: TAbout = {
   title: 'What I Do',
   description:
-    'I possess extensive knowledge in Angular, React, Next.js, Ionic, Nest.js, Docker, and other cutting-edge technologies',
+    'I possess extensive knowledge with javascript frameworks, and other cutting-edge technologies',
   imageLg: '/avatars/avatarlg.png',
   imageSm: '/avatars/avatarsm.png',
   skills: [
@@ -79,7 +79,7 @@ export const ProjectData: TProject = {
     },
   ],
   description:
-    'My proficiency extends to frontend and backend development, allowing me to design comprehensive solutions that cater to diverse business needs. Check projects to know more about my skills.',
+    'My track record of success in delivering high-quality software solutions speaks for itself.',
   items: [
     {
       title: 'Ander Boutique App',

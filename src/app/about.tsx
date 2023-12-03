@@ -1,12 +1,11 @@
 'use client';
-import Image from 'next/image';
 import { ANIMATE, TAbout } from '../app/lib/definitions';
 import { AboutData } from '../app/lib/palceholder_data';
 import FadeAnimation from './ui/fadeAnimation';
-import { Avatar, Listbox, ListboxItem } from '@nextui-org/react';
+import { Listbox, ListboxItem, Image } from '@nextui-org/react';
 
 const About = () => {
-  const { title, description, imageLg, imageSm, skills } = AboutData as TAbout;
+  const { title, description, imageLg, skills } = AboutData as TAbout;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
@@ -33,7 +32,7 @@ const About = () => {
           </p>
         </FadeAnimation>
 
-        <div className="w-full border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+        <div className="w-full px-1 py-2 rounded-small">
           <Listbox
             classNames={{
               base: 'w-full',
@@ -46,15 +45,20 @@ const About = () => {
             {(item) => (
               <ListboxItem key={item.id!} textValue={item.title}>
                 <div className="flex gap-2 items-center">
-                  <Avatar
-                    alt={item.title}
-                    className="flex-shrink-0"
-                    size="sm"
-                    src={item.icon!}
-                  />
                   <div className="flex flex-col">
-                    <span className="text-small">{item.title}</span>
-                    <span className="text-small whitespace-normal text-ellipsis text-default-400">
+                    <div className="flex items-center gap-4">
+                      <Image
+                        className="rounded-full object-cover"
+                        height={30}
+                        width={30}
+                        src={item.icon!}
+                        alt={item.title}
+                      />
+                      <div className="font-medium dark:text-white">
+                        <div>{item.title}</div>
+                      </div>
+                    </div>
+                    <span className="text-small whitespace-normal text-ellipsis text-default-400 mt-1">
                       {item.description}
                     </span>
                   </div>

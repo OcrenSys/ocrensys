@@ -17,62 +17,124 @@ const Form = () => {
   const { values, isLoading, error } = state;
 
   return (
-    <form className="px-8 pt-6 pb-8 mb-4 w-full">
+    <form className="px-2 md:px-4 pt-6 pb-8 mb-4 w-full">
       <div className="mb-4">
         <Input
-          isClearable
+          isRequired
+          radius="lg"
           type="text"
           name="subject"
           label="Subject"
           variant="bordered"
+          classNames={{
+            label: 'text-black/50 dark:text-white/90',
+            input: [
+              'bg-transparent',
+              'text-black/90 dark:text-white/90',
+              'placeholder:text-default-700/50 dark:placeholder:text-white/60',
+            ],
+            innerWrapper: 'bg-transparent',
+            inputWrapper: [
+              'border-white/50',
+              'hover:border-white',
+              'shadow-xl',
+              'bg-default-white',
+              'dark:bg-default-white',
+              'backdrop-blur-xl',
+              'backdrop-saturate-100',
+              'hover:bg-default-white',
+              '!cursor-text',
+            ],
+          }}
           errorMessage={
-            touched.subject && !values.subject ? 'Debes ingresar un nombre' : ''
+            touched.subject && !values.subject
+              ? 'You have to type a subject'
+              : ''
           }
           isInvalid={touched?.subject && !values?.subject}
           value={values.subject}
           onChange={handleChange}
           onBlur={onBlur}
-          className="bg-transparent w-full py-2 px-3 leading-tight focus:outline-none"
         />
       </div>
 
       <div className="mb-4">
         <Input
-          isClearable
+          isRequired
+          radius="lg"
           type="email"
           name="email"
           label="Email"
           variant="bordered"
+          classNames={{
+            label: 'text-black/50 dark:text-white/90',
+            input: [
+              'bg-transparent',
+              'text-black/90 dark:text-white/90',
+              'placeholder:text-default-700/50 dark:placeholder:text-white/60',
+            ],
+            innerWrapper: 'bg-transparent',
+            inputWrapper: [
+              'border-white/50',
+              'hover:border-white',
+              'shadow-xl',
+              'bg-default-white',
+              'dark:bg-default-white',
+              'backdrop-blur-xl',
+              'backdrop-saturate-100',
+              'hover:bg-default-white',
+              '!cursor-text',
+            ],
+          }}
           errorMessage={
             isInvalidEmail || (touched.email && !values.email)
-              ? 'Debes ingresar un email valido'
+              ? 'Type a valid email'
               : ''
           }
           isInvalid={isInvalidEmail || (touched.email && !values.email)}
           value={values.email}
           onChange={handleChange}
           onBlur={onBlur}
-          className="bg-transparent w-full py-2 px-3 leading-tight focus:outline-none"
         />
       </div>
 
       <div className="mb-4">
         <Textarea
           isRequired
+          radius="lg"
           type="text"
           name="message"
           label="Message"
           variant="bordered"
+          classNames={{
+            label: 'text-black/50 dark:text-white/90',
+            input: [
+              'bg-transparent',
+              'text-black/90 dark:text-white/90',
+              'placeholder:text-default-700/50 dark:placeholder:text-white/60',
+            ],
+            innerWrapper: 'bg-transparent',
+            inputWrapper: [
+              'border-white/50',
+              'hover:border-white',
+              'shadow-xl',
+              'bg-default-white',
+              'dark:bg-default-white',
+              'backdrop-blur-xl',
+              'backdrop-saturate-100',
+              'hover:bg-default-white',
+              '!cursor-text',
+            ],
+          }}
           errorMessage={
             touched.message && !values.message
-              ? 'Debes ingresar un mensaje'
+              ? 'You have to type a little message before'
               : ''
           }
           isInvalid={touched.message && !values.message}
           value={values.message}
           onChange={handleChange}
           onBlur={onBlur}
-          className="bg-transparent w-full py-2 px-3 leading-tight focus:outline-none"
         />
       </div>
 
