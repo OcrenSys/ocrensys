@@ -1,8 +1,8 @@
-import { TAbout, TProject } from './definitions';
+import { TAbout, THome, TProject } from './definitions';
 
-export const HomeData = {
+export const HomeData: THome = {
   hi: "HI!, I'm Jairo",
-  roles: '',
+  roles: ['Web Designer', 'Frontend Developer'],
   description:
     'The only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle.',
   skills: ['Web Designer', 'Frontend Developer'],
@@ -13,6 +13,8 @@ export const HomeData = {
     github: 'https://github.com/OcrenSys?tab=repositories',
     medium: 'https://medium.com/@ocrensys',
     likedIn: 'https://www.linkedin.com/in/jairo-martinez-a14b94240/',
+    whatsApp:
+      'https://wa.me/50584081496?text=I am%20interested%20in%20your%20car%20for%20sale',
   },
 };
 

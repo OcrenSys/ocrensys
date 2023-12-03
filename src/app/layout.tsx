@@ -7,6 +7,7 @@ import Loading from './loading';
 import './globals.css';
 import { Provider } from '@/config/themes/provider';
 import { montserrat } from './ui/fonts';
+import Footer from './ui/footer';
 
 export const metadata: Metadata = {
   title: 'Jairo Martinez',
@@ -39,8 +40,8 @@ export default function RootLayout({
           >
             <Suspense fallback={<Loading />}>{children}</Suspense>
           </main>
+          <Footer></Footer>
         </Provider>
-        {/* </div> */}
       </body>
     </html>
   );
