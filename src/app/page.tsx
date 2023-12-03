@@ -8,16 +8,16 @@ const HomePage = () => {
     <div className="w-full min-h-full">
       <div className="grid grid-flow-row auto-rows-max">
         <div className="grid grid-cols-1">
-          <div id="Home" className="my-0 mb-8">
+          <div id="home" className="my-0 pb-8 md:pb-16">
             <Home></Home>
           </div>
-          <div id="About" className="my-16">
+          <div id="about" className="py-8 md:py-16">
             <About></About>
           </div>
-          <div id="Projects" className="mb-8">
+          <div id="projects" className="py-8 md:py-16">
             <Projects></Projects>
           </div>
-          <div id="Contact" className="mb-8">
+          <div id="contact" className="pb-8 md:pb-16">
             <Contact></Contact>
           </div>
         </div>
