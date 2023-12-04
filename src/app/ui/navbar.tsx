@@ -19,6 +19,7 @@ import { Link, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
 interface IMenu {
   title: string;
   url: string;
+  offset: number;
   icon: ReactElement<any, any>;
 }
 
@@ -30,21 +31,25 @@ const Navbar = () => {
     {
       title: 'Home',
       url: 'home',
+      offset: -100,
       icon: <FontAwesomeIcon className="text-white" icon={faHouse} />,
     },
     {
       title: 'About',
       url: 'about',
+      offset: 0,
       icon: <FontAwesomeIcon className="text-white" icon={faCode} />,
     },
     {
       title: 'Projects',
       url: 'projects',
+      offset: 0,
       icon: <FontAwesomeIcon className="text-white" icon={faCode} />,
     },
     {
       title: 'Contact',
       url: 'contact',
+      offset: 0,
       icon: <FontAwesomeIcon className="text-white" icon={faEnvelope} />,
     },
   ];
@@ -107,14 +112,14 @@ const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        {menu.map(({ title, url }, index) => (
+        {menu.map(({ title, url, offset }, index) => (
           <NavbarItem key={index} className={clsx('text-end')}>
             <Link
               activeClass={clsx(IsActive(url) ? 'active' : '')}
               to={url}
               spy={true}
               smooth={true}
-              offset={50}
+              offset={offset}
               delay={300}
               duration={500}
               spyThrottle={300}
@@ -185,7 +190,7 @@ const MobileNavLink = ({ title, url, IsActive, setIsMenuOpen }: any) => {
         to={url}
         spy={true}
         smooth={true}
-        offset={50}
+        offset={-100}
         delay={300}
         duration={500}
         spyThrottle={300}

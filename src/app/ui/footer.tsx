@@ -15,11 +15,12 @@ const Footer = () => {
 
   return (
     <footer className="w-full dark:bg-secondary-100 bg-secondary-100 shadow">
-      <div className="w-full p-4 flex items-center justify-between">
+      <div className="w-full p-4 flex items-center justify-end md:justify-between">
         <span className="hidden md:flex flex-row text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2023{' '}
-          <a href="https://flowbite.com/" className="hover:underline">
-            Flowbite™
+          © {new Date().getFullYear()}
+          &nbsp;
+          <a href="https://jairomartinez.dev" className="hover:underline">
+            jairomartinez.dev
           </a>
           . All Rights Reserved.
         </span>

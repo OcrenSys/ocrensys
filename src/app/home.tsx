@@ -46,7 +46,7 @@ const Home = () => {
           </div>
         </FadeAnimation>
 
-        <FadeAnimation animate={ANIMATE.LEFT_TO_RIGHT}>
+        <FadeAnimation animate={ANIMATE.IN}>
           <h1 className="text-3xl md:text-6xl font-bold text-center md:text-left lg:text-left xl:text-left">
             {hi || ''}
           </h1>
@@ -76,19 +76,19 @@ const Home = () => {
         <motion.div
           initial={{
             opacity: 0,
-            x: -100,
+            y: 100,
           }}
           whileInView={{
             opacity: 1,
-            x: 0,
+            y: 0,
           }}
           transition={{
             delay: 0,
           }}
-          className="mt-4 flex justify-center md:justify-start lg:justify-start xl:justify-start"
+          className="w-full my-8 flex gap-4 flex-col-reverse md:flex-row justify-center md:justify-start lg:justify-start xl:justify-start"
         >
           <Button
-            className="w-auto mr-4"
+            className="w-full"
             radius="full"
             color="primary"
             variant="shadow"
@@ -109,38 +109,40 @@ const Home = () => {
             </Link>
           </Button>
 
-          <Button
-            className="bg-[#000000] mr-4"
-            isIconOnly
-            radius="full"
-            variant="solid"
-            aria-label="medium"
-            onClick={() => redirectTo(social.medium)}
-          >
-            <FontAwesomeIcon icon={faMedium} />
-          </Button>
+          <div className="w-full flex gap-4 flex-row items-center justify-center md:justify-start my-4 md:mt-0">
+            <Button
+              className="bg-[#000000]"
+              isIconOnly
+              radius="full"
+              variant="solid"
+              aria-label="medium"
+              onClick={() => redirectTo(social.medium)}
+            >
+              <FontAwesomeIcon icon={faMedium} />
+            </Button>
 
-          <Button
-            className="bg-[#000000] mr-4"
-            isIconOnly
-            radius="full"
-            variant="solid"
-            aria-label="github"
-            onClick={() => redirectTo(social.github)}
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </Button>
+            <Button
+              className="bg-[#000000]"
+              isIconOnly
+              radius="full"
+              variant="solid"
+              aria-label="github"
+              onClick={() => redirectTo(social.github)}
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </Button>
 
-          <Button
-            className="bg-[#0077B5] mr-4"
-            isIconOnly
-            radius="full"
-            variant="solid"
-            aria-label="linkedin"
-            onClick={() => redirectTo(social.likedIn)}
-          >
-            <FontAwesomeIcon icon={faLinkedin} />
-          </Button>
+            <Button
+              className="bg-[#0077B5]"
+              isIconOnly
+              radius="full"
+              variant="solid"
+              aria-label="linkedin"
+              onClick={() => redirectTo(social.likedIn)}
+            >
+              <FontAwesomeIcon icon={faLinkedin} />
+            </Button>
+          </div>
         </motion.div>
       </div>
       <div className="hidden content-center align-middle justify-center md:justify-end md:flex">

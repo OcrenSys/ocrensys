@@ -15,7 +15,7 @@ const Projects = () => {
   return (
     <section className="grid grid-cols-1">
       <div className="pt-4 px:0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-        <FadeAnimation>
+        <FadeAnimation className="flex flex-col items-center md:items-start">
           <h1 className="max-w-md text-white text-6xl text-center md:text-left lg:text-left xl:text-left font-semibold my-8">
             {title}
           </h1>
@@ -24,7 +24,7 @@ const Projects = () => {
           </p>
           <Button
             onClick={() => redirectTo(social.github)}
-            className="w-auto mr-4 border-white"
+            className="w-full md:w-auto mr-4 mb-4 border-white"
             radius="full"
             variant="bordered"
           >
