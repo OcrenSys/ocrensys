@@ -25,7 +25,7 @@ interface IMenu {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
-  const [currentMenuItem, setCurrentMenuItem] = React.useState<string>('Home');
+  const [currentMenuItem, setCurrentMenuItem] = React.useState<string>('home');
 
   const menu: IMenu[] = [
     {
@@ -113,9 +113,8 @@ const Navbar = () => {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
         {menu.map(({ title, url, offset }, index) => (
-          <NavbarItem key={index} className={clsx('text-end')}>
+          <NavbarItem key={index} className={clsx('text-end')} isActive={IsActive(url)}>
             <Link
-              activeClass={clsx(IsActive(url) ? 'active' : '')}
               to={url}
               spy={true}
               smooth={true}
@@ -123,7 +122,7 @@ const Navbar = () => {
               delay={300}
               duration={500}
               spyThrottle={300}
-              className={clsx('text-foreground, cursor-pointer')}
+              className={clsx('text-foreground  cursor-pointer')}
             >
               {title}
             </Link>
@@ -198,6 +197,7 @@ const MobileNavLink = ({ title, url, IsActive, setIsMenuOpen }: any) => {
         className={clsx(
           montserrat.className,
           'text-center text-foreground text-5xl font-semi-bold  my-4',
+          {'font-bold':  IsActive(url)}
         )}
       >
         {title}
