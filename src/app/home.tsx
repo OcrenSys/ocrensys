@@ -88,7 +88,7 @@ const Home = () => {
           className="w-full my-8 flex gap-4 flex-col-reverse md:flex-row justify-center md:justify-start lg:justify-start xl:justify-start"
         >
           <Button
-            className="w-full"
+            className="w-full md:w-auto"
             radius="full"
             color="primary"
             variant="shadow"
@@ -101,7 +101,7 @@ const Home = () => {
               delay={300}
               duration={500}
               spyThrottle={300}
-              className={clsx('text-foreground, cursor-pointer')}
+              className={clsx('text-foreground cursor-pointer px-8')}
             >
               <FontAwesomeIcon icon={faEnvelope} />
               &nbsp;

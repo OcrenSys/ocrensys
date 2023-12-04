@@ -1,4 +1,4 @@
-import { faCode, faGamepad, faLightbulb, faTerminal } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faCode, faComments, faDumbbell, faGamepad, faHouseChimneyWindow, faLightbulb, faPeopleGroup, faTerminal } from '@fortawesome/free-solid-svg-icons';
 import { TAbout, THome, TProject } from './definitions';
 
 export const HomeData: THome = {
@@ -32,36 +32,40 @@ export const AboutData: TAbout = {
       items: [
         {
           id: 1,
-          icon: '/tech/angular.png',
+          type: 'image',
+          src: '/tech/angular.png',
           title: 'Angular V17+',
           description:
             'Mastering Angular, I architect and develop robust, scalable applications, leveraging its powerful features to deliver seamless, high-performance user experiences.',
         },
-
         {
           id: 2,
-          icon: '/tech/react.png',
+          type: 'image',
+          src: '/tech/react.png',
           title: 'React V18+',
           description:
             'In React, I harness declarative syntax and component reusability for efficient UI development, ensuring scalable, interactive, and seamless applications.',
         },
         {
           id: 3,
-          icon: '/tech/next.png',
+          type: 'image',
+          src: '/tech/next.png',
           title: 'NextJS V14+',
           description:
             'Leveraging Next.js, I achieve server-side rendering for optimal performance, SEO benefits, and streamlined development of dynamic, modern web applications.',
         },
         {
           id: 4,
-          icon: '/tech/nest.png',
+          type: 'image',
+          src: '/tech/nest.png',
           title: 'NestJS',
           description:
             'With NestJS, I optimize backend development through TypeScript, modular architecture, and efficient dependency injection, ensuring scalable and maintainable server-side applications.',
         },
         {
           id: 5,
-          icon: '/tech/ionic.png',
+          type: 'image',
+          src: '/tech/ionic.png',
           title: 'Ionic Framework V6+',
           description:
             'In Ionic, I excel at crafting cross-platform mobile apps with a single codebase, offering seamless user experiences across diverse devices.',
@@ -74,32 +78,60 @@ export const AboutData: TAbout = {
       items: [
         {
           id: 1,
-          icon: '/tech/angular.png',
-          title: 'Angular V17+',
+          type: 'icon',
+          src: faPeopleGroup,
+          title: 'Work as a team',
           description:
-            'Mastering Angular, I architect and develop robust, scalable applications, leveraging its powerful features to deliver seamless, high-performance user experiences.',
+            '',
+        },
+        
+        {
+          id: 2,
+          type: 'icon',
+          src: faComments,
+          title: 'Effective communication',
+          description:
+            '',
+        },
+        {
+          id: 3,
+          type: 'icon',
+          src: faLightbulb,
+          title: 'Solving problems',
+          description:
+            '',
         },
       ],
     },
     {
-      title: 'Habbies',
-      icon: faGamepad,
+      title: 'Hobbies',
+      icon: faDumbbell,
       items: [
         {
-          id: 1,
-          icon: '/tech/angular.png',
-          title: 'Angular V17+',
+        id: 1,
+        type: 'icon',
+        src: faHouseChimneyWindow,
+        title: 'Spending time with family',
           description:
-            'Mastering Angular, I architect and develop robust, scalable applications, leveraging its powerful features to deliver seamless, high-performance user experiences.',
+            '',
         },
-
         {
           id: 2,
-          icon: '/tech/react.png',
-          title: 'React V18+',
+          type: 'icon',
+          src: faBook,
+          title: 'Learn new things',
           description:
-            'In React, I harness declarative syntax and component reusability for efficient UI development, ensuring scalable, interactive, and seamless applications.',
+            '',
         },
+        {
+          id: 3,
+          type: 'icon',
+          src: faDumbbell,
+          title: 'Make excercise',
+          description:
+            '',
+        },
+        
       ],
     
     },
@@ -166,8 +198,7 @@ export const ProjectData: TProject = {
     github: 'https://github.com/OcrenSys?tab=repositories',
     medium: 'https://medium.com/@ocrensys',
     likedIn: 'https://www.linkedin.com/in/jairo-martinez-a14b94240/',
-    whatsApp:
-      'https://wa.me/50584081496?text=I am%20interested%20in%20your%20car%20for%20sale',
+    whatsApp: 'https://wa.me/50584081496',
   },
 };
 

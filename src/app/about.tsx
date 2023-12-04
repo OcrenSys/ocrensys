@@ -7,6 +7,7 @@ import { Listbox, ListboxItem, Image, Tabs, Tab, Button } from '@nextui-org/reac
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import Avatar from './ui/avatar';
 
 const About = () => {
   const { title, description, imageLg, skills } = AboutData as TAbout;
@@ -117,20 +118,17 @@ const About = () => {
                           >
                             <div className="flex flex-col">
                               <div className="flex items-center gap-4">
-                                <Image
-                                  className="rounded-full object-cover"
-                                  height={25}
-                                  width={25}
-                                  src={item.icon!}
-                                  alt={item.title}
+                                <Avatar
+                                  type={item.type}
+                                  height={20}
+                                  width={20}
+                                  src={item.src!}
+                                  title={item.title}
                                 />
-                                <div className="font-medium dark:text-white">
+                                <div className="font-light dark:text-white">
                                   <div>{item.title}</div>
                                 </div>
                               </div>
-                              {/* <span className="text-small whitespace-normal text-ellipsis text-default-400 mt-1">
-                                {item.description}
-                              </span> */}
                             </div>
                           </motion.div>
                       </ListboxItem>

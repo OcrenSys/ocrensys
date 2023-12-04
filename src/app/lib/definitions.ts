@@ -41,7 +41,8 @@ export type TSkill = {
 
 export type TSkillItem = {
   id?: number;
-  icon?: string;
+  type?: string;
+  src?: any;
   title: string;
   description: string;
 };
