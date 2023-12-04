@@ -34,10 +34,43 @@ export type TAbout = {
 };
 
 export type TSkill = {
+  title: string;
+  icon?: any;
+  items: TSkillItem[];
+};
+
+export type TSkillItem = {
   id?: number;
   icon?: string;
   title: string;
   description: string;
+};
+
+export type TProject = {
+  title?: string;
+  qualities?: TProjectQuality[];
+  description?: string;
+  items: TProjectItem[];
+  social: TSocialUrls;
+};
+
+export type TSocialUrls = {
+  github: string;
+  medium: string;
+  likedIn: string;
+  whatsApp: string;
+};
+
+export type TProjectQuality = {
+  title: string;
+  icon?: string;
+};
+
+export type TProjectItem = {
+  title: string;
+  description?: string;
+  image?: string;
+  url?: string;
 };
 
 export type TEmailSend = {
@@ -57,33 +90,6 @@ export type TEmailSendTouched = {
 export type TResendParameters = {
   API_KEY: string;
   EMAIL: string;
-};
-
-export type TSocialUrls = {
-  github: string;
-  medium: string;
-  likedIn: string;
-  whatsApp: string;
-};
-
-export type TProject = {
-  title?: string;
-  qualities?: TProjectQuality[];
-  description?: string;
-  items: TProjectItem[];
-  social: TSocialUrls;
-};
-
-export type TProjectQuality = {
-  title: string;
-  icon?: string;
-};
-
-export type TProjectItem = {
-  title: string;
-  description?: string;
-  image?: string;
-  url?: string;
 };
 
 export type TState = {

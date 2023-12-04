@@ -3,6 +3,8 @@ import { Button, Input, Textarea } from '@nextui-org/react';
 import useForm from '../lib/hooks/useForm';
 import { ToastContainer } from 'react-toastify';
 import { TPropsForm } from '../lib/definitions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const Form = () => {
   const {
@@ -146,6 +148,8 @@ const Form = () => {
           variant="shadow"
           onClick={() => onSubmit()}
         >
+          <FontAwesomeIcon icon={faPaperPlane} />
+          &nbsp;
           Send
         </Button>
       </div>

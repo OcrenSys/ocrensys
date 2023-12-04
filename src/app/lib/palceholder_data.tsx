@@ -1,3 +1,4 @@
+import { faCode, faGamepad, faLightbulb, faTerminal } from '@fortawesome/free-solid-svg-icons';
 import { TAbout, THome, TProject } from './definitions';
 
 export const HomeData: THome = {
@@ -26,40 +27,81 @@ export const AboutData: TAbout = {
   imageSm: '/avatars/avatarsm.png',
   skills: [
     {
-      id: 1,
-      icon: '/tech/angular.png',
-      title: 'Angular V17+',
-      description:
-        'Mastering Angular, I architect and develop robust, scalable applications, leveraging its powerful features to deliver seamless, high-performance user experiences.',
-    },
+      title: 'Stack',
+      icon: faCode,
+      items: [
+        {
+          id: 1,
+          icon: '/tech/angular.png',
+          title: 'Angular V17+',
+          description:
+            'Mastering Angular, I architect and develop robust, scalable applications, leveraging its powerful features to deliver seamless, high-performance user experiences.',
+        },
 
-    {
-      id: 2,
-      icon: '/tech/react.png',
-      title: 'React V18+',
-      description:
-        'In React, I harness declarative syntax and component reusability for efficient UI development, ensuring scalable, interactive, and seamless applications.',
+        {
+          id: 2,
+          icon: '/tech/react.png',
+          title: 'React V18+',
+          description:
+            'In React, I harness declarative syntax and component reusability for efficient UI development, ensuring scalable, interactive, and seamless applications.',
+        },
+        {
+          id: 3,
+          icon: '/tech/next.png',
+          title: 'NextJS V14+',
+          description:
+            'Leveraging Next.js, I achieve server-side rendering for optimal performance, SEO benefits, and streamlined development of dynamic, modern web applications.',
+        },
+        {
+          id: 4,
+          icon: '/tech/nest.png',
+          title: 'NestJS',
+          description:
+            'With NestJS, I optimize backend development through TypeScript, modular architecture, and efficient dependency injection, ensuring scalable and maintainable server-side applications.',
+        },
+        {
+          id: 5,
+          icon: '/tech/ionic.png',
+          title: 'Ionic Framework V6+',
+          description:
+            'In Ionic, I excel at crafting cross-platform mobile apps with a single codebase, offering seamless user experiences across diverse devices.',
+        },
+      ],
     },
     {
-      id: 3,
-      icon: '/tech/next.png',
-      title: 'NextJS V14+',
-      description:
-        'Leveraging Next.js, I achieve server-side rendering for optimal performance, SEO benefits, and streamlined development of dynamic, modern web applications.',
+      title: 'Soft Skills',
+      icon: faLightbulb,
+      items: [
+        {
+          id: 1,
+          icon: '/tech/angular.png',
+          title: 'Angular V17+',
+          description:
+            'Mastering Angular, I architect and develop robust, scalable applications, leveraging its powerful features to deliver seamless, high-performance user experiences.',
+        },
+      ],
     },
     {
-      id: 4,
-      icon: '/tech/nest.png',
-      title: 'NestJS',
-      description:
-        'With NestJS, I optimize backend development through TypeScript, modular architecture, and efficient dependency injection, ensuring scalable and maintainable server-side applications.',
-    },
-    {
-      id: 5,
-      icon: '/tech/ionic.png',
-      title: 'Ionic Framework V6+',
-      description:
-        'In Ionic, I excel at crafting cross-platform mobile apps with a single codebase, offering seamless user experiences across diverse devices.',
+      title: 'Habbies',
+      icon: faGamepad,
+      items: [
+        {
+          id: 1,
+          icon: '/tech/angular.png',
+          title: 'Angular V17+',
+          description:
+            'Mastering Angular, I architect and develop robust, scalable applications, leveraging its powerful features to deliver seamless, high-performance user experiences.',
+        },
+
+        {
+          id: 2,
+          icon: '/tech/react.png',
+          title: 'React V18+',
+          description:
+            'In React, I harness declarative syntax and component reusability for efficient UI development, ensuring scalable, interactive, and seamless applications.',
+        },
+      ],
+    
     },
   ],
 };

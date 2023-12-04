@@ -1,9 +1,12 @@
 'use client';
-import { ANIMATE, TAbout } from '../app/lib/definitions';
+import { faCode, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { ANIMATE, TAbout, TSkill, TSkillItem } from '../app/lib/definitions';
 import { AboutData } from '../app/lib/palceholder_data';
 import FadeAnimation from './ui/fadeAnimation';
-import { Listbox, ListboxItem, Image } from '@nextui-org/react';
+import { Listbox, ListboxItem, Image, Tabs, Tab, Button } from '@nextui-org/react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 
 const About = () => {
   const { title, description, imageLg, skills } = AboutData as TAbout;
@@ -58,54 +61,98 @@ const About = () => {
 
       <div className="md:col-span-2 lg: col-span-2 my-8 md:my-0 lg:my-8 md:mb-auto">
         <FadeAnimation>
-          <h1 className="max-w-md text-white text-6xl text-center md:text-left lg:text-left xl:text-left font-semibold my-8">
-            {title}
-          </h1>
+          <div className='flex flex-row items-center justify-between'>
+            <h1 className="max-w-md text-white text-6xl text-center md:text-left lg:text-left xl:text-left font-semibold my-8">
+              {title}
+            </h1>
+            <Link href="/pdf/JairoMartinez-SoftwareDeveloper.pdf" download>
+              <Button
+                  className="hidden md:block w-full md:w-auto border-white"
+                  radius="full"
+                  variant="bordered"
+                  >
+                <FontAwesomeIcon icon={faDownload} />
+                &nbsp; {'Dowload CV'}
+              </Button>
+            </Link>
+          </div>
           <p className="text-xl md:text-xl font-light text-center md:text-justify md:text-clip mt-6 mb-8">
             {description}
           </p>
         </FadeAnimation>
 
         <div className="w-full px-1 py-2 rounded-small">
-          <motion.div variants={container} initial="initial" whileInView="open">
-            <Listbox
-              classNames={{
-                base: 'w-full',
-                list: '',
-              }}
-              items={skills}
-              label="Assigned to"
-              variant="flat"
-            >
-              {(item) => (
-                <ListboxItem key={item.id!} textValue={item.title}>
-                  <motion.div
-                    variants={variant}
-                    className="flex gap-2 items-center"
-                  >
-                    <div className="flex flex-col">
-                      <div className="flex items-center gap-4">
-                        <Image
-                          className="rounded-full object-cover"
-                          height={30}
-                          width={30}
-                          src={item.icon!}
-                          alt={item.title}
-                        />
-                        <div className="font-medium dark:text-white">
-                          <div>{item.title}</div>
-                        </div>
-                      </div>
-                      <span className="text-small whitespace-normal text-ellipsis text-default-400 mt-1">
-                        {item.description}
-                      </span>
+          <Tabs key={'skills'} color={'secondary'} aria-label="skills" variant='underlined'
+            classNames={{
+              tabList: "md:gap-6 max-w-sm md:w-full",
+              tab: "border-white",
+              tabContent: "group-data-[selected=true]:text-foreground"
+            }}>
+            {
+              skills.map(({icon, title, items}: TSkill) => (
+
+                <Tab
+                  key={title}
+                  title={
+                    <div className="flex items-center space-x-2">
+                      <FontAwesomeIcon icon={icon} />
+                      <span>{ title}</span>
                     </div>
-                  </motion.div>
-                </ListboxItem>
-              )}
-            </Listbox>
-          </motion.div>
+                }>
+                  <motion.div variants={container} initial="initial" whileInView="open">
+                    <Listbox
+                      classNames={{
+                        base: 'w-full',
+                        list: '',
+                      }}
+                      items={items}
+                      label="Assigned to"
+                      variant="flat"
+                    >
+                      {(item) => (
+                        <ListboxItem key={item.id!} textValue={item.title}>
+                          <motion.div
+                            variants={variant}
+                            className="flex gap-2 items-center"
+                          >
+                            <div className="flex flex-col">
+                              <div className="flex items-center gap-4">
+                                <Image
+                                  className="rounded-full object-cover"
+                                  height={25}
+                                  width={25}
+                                  src={item.icon!}
+                                  alt={item.title}
+                                />
+                                <div className="font-medium dark:text-white">
+                                  <div>{item.title}</div>
+                                </div>
+                              </div>
+                              {/* <span className="text-small whitespace-normal text-ellipsis text-default-400 mt-1">
+                                {item.description}
+                              </span> */}
+                            </div>
+                          </motion.div>
+                      </ListboxItem>
+                    )}
+                </Listbox>
+              </motion.div>
+            </Tab>
+              ))
+            }
+          </Tabs>
         </div>
+
+        <Link href="/pdf/JairoMartinez-SoftwareDeveloper.pdf" download>
+         <Button
+            className="md:hidden w-full md:w-auto border-white"
+            radius="full"
+            variant="bordered"
+            >
+          <FontAwesomeIcon icon={faDownload} />
+          &nbsp; {'Dowload CV'}
+          </Button>
+            </Link>
       </div>
     </div>
   );

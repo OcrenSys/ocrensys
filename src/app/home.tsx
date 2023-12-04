@@ -103,9 +103,9 @@ const Home = () => {
               spyThrottle={300}
               className={clsx('text-foreground, cursor-pointer')}
             >
-              {getInTouch}
-              &nbsp;
               <FontAwesomeIcon icon={faEnvelope} />
+              &nbsp;
+              {getInTouch}
             </Link>
           </Button>
 
