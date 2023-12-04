@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { motion } from 'framer-motion';
 import { Button } from '@nextui-org/react';
@@ -9,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faMedium } from '@fortawesome/free-brands-svg-icons/faMedium';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { ANIMATE, THome } from './lib/definitions';
 import { HomeData } from './lib/palceholder_data';
 import { ubuntu } from './ui/fonts';
@@ -17,6 +16,7 @@ import { ubuntu } from './ui/fonts';
 import clsx from 'clsx';
 import FadeAnimation from './ui/fadeAnimation';
 import { TypeAnimation } from 'react-type-animation';
+import { Link } from 'react-scroll';
 
 const Home = () => {
   const {
@@ -87,17 +87,27 @@ const Home = () => {
           }}
           className="mt-4 flex justify-center md:justify-start lg:justify-start xl:justify-start"
         >
-          <Link href={'#contact'}>
-            <Button
-              className="w-auto mr-4"
-              radius="full"
-              color="primary"
-              variant="shadow"
+          <Button
+            className="w-auto mr-4"
+            radius="full"
+            color="primary"
+            variant="shadow"
+          >
+            <Link
+              to={'contact'}
+              spy={true}
+              smooth={true}
+              offset={-100}
+              delay={300}
+              duration={500}
+              spyThrottle={300}
+              className={clsx('text-foreground, cursor-pointer')}
             >
               {getInTouch}
-              <FontAwesomeIcon icon={faArrowRight} />
-            </Button>
-          </Link>
+              &nbsp;
+              <FontAwesomeIcon icon={faEnvelope} />
+            </Link>
+          </Button>
 
           <Button
             className="bg-[#000000] mr-4"

@@ -120,6 +120,13 @@ export const ProjectData: TProject = {
       image: '/projects/6.jpg',
     },
   ],
+  social: {
+    github: 'https://github.com/OcrenSys?tab=repositories',
+    medium: 'https://medium.com/@ocrensys',
+    likedIn: 'https://www.linkedin.com/in/jairo-martinez-a14b94240/',
+    whatsApp:
+      'https://wa.me/50584081496?text=I am%20interested%20in%20your%20car%20for%20sale',
+  },
 };
 
 export const ContactData = {};

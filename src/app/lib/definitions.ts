@@ -71,6 +71,7 @@ export type TProject = {
   qualities?: TProjectQuality[];
   description?: string;
   items: TProjectItem[];
+  social: TSocialUrls;
 };
 
 export type TProjectQuality = {
