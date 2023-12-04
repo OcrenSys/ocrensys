@@ -8,6 +8,7 @@ import './globals.css';
 import { Provider } from '@/config/themes/provider';
 import { montserrat } from './ui/fonts';
 import Footer from './ui/footer';
+import AnimatedCursor from 'react-animated-cursor';
 
 export const metadata: Metadata = {
   title: 'Jairo Martinez',
@@ -29,6 +30,26 @@ export default function RootLayout({
           'antialiased min-h-screen ',
         )}
       >
+        <AnimatedCursor 
+          color='193, 11, 111'
+          innerSize={8}
+          innerScale={0.7}
+          outerSize={20}
+          outerScale={8}
+          outerAlpha={0.2}
+          clickables={[
+            'a',
+            'input[type="text"]',
+            'input[type="email"]',
+            'input[type="number"]',
+            'input[type="submit"]',
+            'input[type="image"]',
+            'label[for]',
+            'select',
+            'textarea',
+            'button',
+            '.link',
+          ]} />
         <Navbar></Navbar>
         <Provider>
           <main
