@@ -70,15 +70,6 @@ const Card = ({ project }: any) => {
               <p className="text-tiny text-white/90">{title}</p>
             </div>
           </div>
-          <Button
-            size="sm"
-            color="primary"
-            radius="full"
-            variant="shadow"
-            aria-label="github"
-          >
-            Read More <FontAwesomeIcon icon={faArrowRight} />
-          </Button>
         </CardFooter>
       </Content>
     </motion.div>

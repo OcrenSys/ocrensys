@@ -1,7 +1,6 @@
 'use client';
-import Typed from 'react-typed';
+import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { motion } from 'framer-motion';
 import { Button } from '@nextui-org/react';
@@ -9,20 +8,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faMedium } from '@fortawesome/free-brands-svg-icons/faMedium';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { ANIMATE, THome } from './lib/definitions';
 import { HomeData } from './lib/palceholder_data';
 import { ubuntu } from './ui/fonts';
 
 import clsx from 'clsx';
 import FadeAnimation from './ui/fadeAnimation';
+import { TypeAnimation } from 'react-type-animation';
+import { Link } from 'react-scroll';
 
 const Home = () => {
   const {
     hi,
     roles,
     description,
-    skills,
     getInTouch,
     imageLg,
     imageSm,
@@ -46,7 +46,7 @@ const Home = () => {
           </div>
         </FadeAnimation>
 
-        <FadeAnimation animate={ANIMATE.LEFT_TO_RIGHT}>
+        <FadeAnimation animate={ANIMATE.IN}>
           <h1 className="text-3xl md:text-6xl font-bold text-center md:text-left lg:text-left xl:text-left">
             {hi || ''}
           </h1>
@@ -55,17 +55,13 @@ const Home = () => {
               'text-2xl md:text-5xl font-medium mt-2 text-white text-center md:text-left lg:text-left xl:text-left'
             }
           >
-            {roles || ''}{' '}
-            <Typed
+            <TypeAnimation
               className={clsx(
                 ubuntu.className,
                 'text-2xl md:text-5xl font-extrabold mt-2 text-white text-center md:text-left lg:text-left xl:text-left',
               )}
-              strings={skills || []}
-              typeSpeed={100}
-              backSpeed={100}
-              cursorChar="_"
-              loop
+              sequence={[roles[0], 1500, roles[1], 800]}
+              repeat={Infinity}
             />
           </h2>
           <p
@@ -80,61 +76,73 @@ const Home = () => {
         <motion.div
           initial={{
             opacity: 0,
-            x: -100,
+            y: 100,
           }}
           whileInView={{
             opacity: 1,
-            x: 0,
+            y: 0,
           }}
           transition={{
             delay: 0,
           }}
-          className="mt-4 flex justify-center md:justify-start lg:justify-start xl:justify-start"
+          className="w-full my-8 flex gap-4 flex-col-reverse md:flex-row justify-center md:justify-start lg:justify-start xl:justify-start"
         >
-          <Link href={'#contact'}>
-            <Button
-              className="w-auto mr-4"
-              radius="full"
-              color="primary"
-              variant="shadow"
+          <Button
+            className="w-full"
+            radius="full"
+            color="primary"
+            variant="shadow"
+          >
+            <Link
+              to={'contact'}
+              spy={true}
+              smooth={true}
+              offset={-100}
+              delay={300}
+              duration={500}
+              spyThrottle={300}
+              className={clsx('text-foreground, cursor-pointer')}
             >
               {getInTouch}
-              <FontAwesomeIcon icon={faArrowRight} />
+              &nbsp;
+              <FontAwesomeIcon icon={faEnvelope} />
+            </Link>
+          </Button>
+
+          <div className="w-full flex gap-4 flex-row items-center justify-center md:justify-start my-4 md:mt-0">
+            <Button
+              className="bg-[#000000]"
+              isIconOnly
+              radius="full"
+              variant="solid"
+              aria-label="medium"
+              onClick={() => redirectTo(social.medium)}
+            >
+              <FontAwesomeIcon icon={faMedium} />
             </Button>
-          </Link>
 
-          <Button
-            className="bg-[#000000] mr-4"
-            isIconOnly
-            radius="full"
-            variant="solid"
-            aria-label="medium"
-            onClick={() => redirectTo(social.medium)}
-          >
-            <FontAwesomeIcon icon={faMedium} />
-          </Button>
+            <Button
+              className="bg-[#000000]"
+              isIconOnly
+              radius="full"
+              variant="solid"
+              aria-label="github"
+              onClick={() => redirectTo(social.github)}
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </Button>
 
-          <Button
-            className="bg-[#000000] mr-4"
-            isIconOnly
-            radius="full"
-            variant="solid"
-            aria-label="github"
-            onClick={() => redirectTo(social.github)}
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </Button>
-
-          <Button
-            className="bg-[#0077B5] mr-4"
-            isIconOnly
-            radius="full"
-            variant="solid"
-            aria-label="linkedin"
-            onClick={() => redirectTo(social.likedIn)}
-          >
-            <FontAwesomeIcon icon={faLinkedin} />
-          </Button>
+            <Button
+              className="bg-[#0077B5]"
+              isIconOnly
+              radius="full"
+              variant="solid"
+              aria-label="linkedin"
+              onClick={() => redirectTo(social.likedIn)}
+            >
+              <FontAwesomeIcon icon={faLinkedin} />
+            </Button>
+          </div>
         </motion.div>
       </div>
       <div className="hidden content-center align-middle justify-center md:justify-end md:flex">

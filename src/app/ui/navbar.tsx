@@ -1,10 +1,9 @@
 'use client';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import {
   Navbar as Nav,
   NavbarBrand,
   NavbarContent,
-  Link,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarItem,
@@ -15,37 +14,42 @@ import { faCode, faEnvelope, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { montserrat } from './fonts';
+import { Link, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
 
 interface IMenu {
   title: string;
   url: string;
+  offset: number;
   icon: ReactElement<any, any>;
 }
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
-  const [currentMenuItem, setIsCurrentMenuItem] =
-    React.useState<string>('Home');
+  const [currentMenuItem, setCurrentMenuItem] = React.useState<string>('Home');
 
   const menu: IMenu[] = [
     {
       title: 'Home',
-      url: '#Home',
+      url: 'home',
+      offset: -100,
       icon: <FontAwesomeIcon className="text-white" icon={faHouse} />,
     },
     {
       title: 'About',
-      url: '#About',
+      url: 'about',
+      offset: 0,
       icon: <FontAwesomeIcon className="text-white" icon={faCode} />,
     },
     {
       title: 'Projects',
-      url: '#Projects',
+      url: 'projects',
+      offset: 0,
       icon: <FontAwesomeIcon className="text-white" icon={faCode} />,
     },
     {
       title: 'Contact',
-      url: '#Contact',
+      url: 'contact',
+      offset: 0,
       icon: <FontAwesomeIcon className="text-white" icon={faEnvelope} />,
     },
   ];
@@ -69,6 +73,19 @@ const Navbar = () => {
       },
     },
   };
+
+  useEffect(() => {
+    Events.scrollEvent.register('end', (to: any, element: any) => {
+      setCurrentMenuItem(to);
+    });
+
+    scrollSpy.update();
+
+    return () => {
+      Events.scrollEvent.remove('begin');
+      Events.scrollEvent.remove('end');
+    };
+  }, []);
 
   return (
     <Nav
@@ -95,16 +112,18 @@ const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        {menu.map(({ title, url }, index) => (
-          <NavbarItem
-            isActive={IsActive(title)}
-            key={index}
-            className={clsx('text-end')}
-          >
+        {menu.map(({ title, url, offset }, index) => (
+          <NavbarItem key={index} className={clsx('text-end')}>
             <Link
-              href={url}
-              onPress={() => setIsCurrentMenuItem(title)}
-              className={clsx('text-foreground')}
+              activeClass={clsx(IsActive(url) ? 'active' : '')}
+              to={url}
+              spy={true}
+              smooth={true}
+              offset={offset}
+              delay={300}
+              duration={500}
+              spyThrottle={300}
+              className={clsx('text-foreground, cursor-pointer')}
             >
               {title}
             </Link>
@@ -124,10 +143,9 @@ const Navbar = () => {
             return (
               <NavbarItem key={index} className="overflow-hidden h-[100px]">
                 <MobileNavLink
-                  href={url}
+                  url={url}
                   title={title}
-                  currentMenuItem={currentMenuItem}
-                  setIsCurrentMenuItem={setIsCurrentMenuItem}
+                  IsActive={IsActive}
                   setIsMenuOpen={setIsMenuOpen}
                 />
               </NavbarItem>
@@ -164,28 +182,23 @@ const mobileLinkVars = {
     },
   },
 };
-const MobileNavLink = ({
-  title,
-  href,
-  currentMenuItem,
-  setIsCurrentMenuItem,
-  setIsMenuOpen,
-}: any) => {
-  const handlePress = (title: string) => {
-    setIsCurrentMenuItem(title);
-    setIsMenuOpen(false);
-  };
-
+const MobileNavLink = ({ title, url, IsActive, setIsMenuOpen }: any) => {
   return (
     <motion.div variants={mobileLinkVars}>
       <Link
-        // color={title === currentMenuItem ? 'primary' : 'foreground'}
+        activeClass={clsx(IsActive(url) ? 'active' : '')}
+        to={url}
+        spy={true}
+        smooth={true}
+        offset={-100}
+        delay={300}
+        duration={500}
+        spyThrottle={300}
+        onClick={() => setIsMenuOpen(false)}
         className={clsx(
           montserrat.className,
           'text-center text-foreground text-5xl font-semi-bold  my-4',
         )}
-        href={href}
-        onPress={() => handlePress(title)}
       >
         {title}
       </Link>

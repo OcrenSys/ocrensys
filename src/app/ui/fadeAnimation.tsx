@@ -2,13 +2,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ANIMATE, TVariant } from '../lib/definitions';
+import clsx from 'clsx';
 
 type Props = {
   children?: React.ReactElement<HTMLElement>[] | React.JSX.Element[];
   animate?: ANIMATE;
+  className?: string;
 };
 
-const FadeAnimation = ({ children = [], animate }: Props) => {
+const FadeAnimation = ({ children = [], animate, className = '' }: Props) => {
   const setAnimation = (animate?: ANIMATE): { variants: any; variant: any } => {
     let variants: TVariant = {
       initial: { opacity: 0 },
@@ -140,7 +142,7 @@ const FadeAnimation = ({ children = [], animate }: Props) => {
 
   return (
     <motion.div
-      className="w-full"
+      className={clsx(className, 'w-full')}
       variants={setAnimation(animate).variants}
       initial="initial"
       whileInView="animate"
@@ -148,7 +150,11 @@ const FadeAnimation = ({ children = [], animate }: Props) => {
       {children &&
         children.map(
           (child: React.ReactElement<HTMLElement>, index: number) => (
-            <motion.div key={index} variants={setAnimation(animate).variant}>
+            <motion.div
+              className="w-full"
+              key={index}
+              variants={setAnimation(animate).variant}
+            >
               {child}
             </motion.div>
           ),

@@ -138,8 +138,9 @@ const Form = () => {
         />
       </div>
 
-      <div className="flex items-center justify-start max-w-md px-3">
+      <div className="flex items-center justify-start max-w-md">
         <Button
+          className="w-full md:w-auto "
           isLoading={isLoading}
           color="primary"
           variant="shadow"
